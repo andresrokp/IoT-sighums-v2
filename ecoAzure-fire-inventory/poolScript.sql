@@ -1,12 +1,16 @@
+--crete the schema to the dbo user
+CREATE SCHEMA contraincendiosh
+AUTHORIZATION dbo
+
 -- Drop the table if it already exists
-IF OBJECT_ID('rci.bodegas', 'U') IS NOT NULL
+IF OBJECT_ID('contraincendiosh.bodegas', 'U') IS NOT NULL
 DROP TABLE rci.bodegas
 GO
 
 -- Create bodegas in rci
-CREATE TABLE rci.bodegas
+CREATE TABLE contraincendiosh.bodegas
 (
-	id INT,
+	id INT IDENTITY(1,1),
 	name NVARCHAR(50) NOT NULL,
 	latitude DECIMAL(10,7) NOT NULL,
 	longitude DECIMAL(10,7) NOT NULL,
@@ -14,8 +18,6 @@ CREATE TABLE rci.bodegas
 );
 GO
 
+INSERT INTO contraincendiosh.bodegas (name,latitude,longitude,tipo) VALUES ('Bodega C.I. Yondo','7.003304','-73.911276','fija') ;
 
-
-INSERT INTO rci.bodegas (id,name,latitude,longitude,tipo) VALUES (1,'bodeguita2','12.34','-75.435','fija') ;
-
-SELECT * FROM rci.bodegas;
+SELECT * FROM contraincendiosh.bodegas;
