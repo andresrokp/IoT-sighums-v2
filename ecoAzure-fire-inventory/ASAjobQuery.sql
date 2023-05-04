@@ -1,32 +1,34 @@
-/* Por qué borraron el query enterior?
-No lo tiene que hacer muchachos,
-ellos trabajan en paralelo.*/
-
 /*RETO 17*/
 
+/*
 SELECT
     *
 INTO
     BlobEquiposMoviles
 FROM
-    iothubreto18
+    iothubreto17
 WHERE
-    GetMetadatapropertyValue(iothubreto18, 'IoTHub.ConnectionDeviceId') = 'Ambulancia_HTX357';
+    GetMetadatapropertyValue(iothubreto17, 'IoTHub.ConnectionDeviceId') = 'Ambulancia_HTX357';
+*/
 
 SELECT
-    *
+    tempName.arrayvalue.tag,
+    tempName.arrayvalue.rssi,
+    iothubreto17.ts,
+    iothubreto17.gateId,
+    iothubreto17.latitude,
+    iothubreto17.longitude
 INTO
-    BlobBodegasFijas
+    dataencsv
 FROM
-    iothubreto18
-WHERE
-    GetMetadatapropertyValue(iothubreto18, 'IoTHub.ConnectionDeviceId') = 'GMA-CENTRO-LISAMA-LLANITO-SUBSUELO';
+    iothubreto17
+CROSS APPLY
+    GetArrayElements(iothubreto17.tagsArray) AS tempName
 
 /*
 TODO:
-save data as .csv to synaps input
+save data as synapse SQL table
 */
-
 
 
 /*RETO 18*/
@@ -35,3 +37,16 @@ SELECT *
 INTO Eventhub7545
 FROM iothubreto18
 WHERE ApplicationUri='urn:GCHEAVIP21P:AspenTech:InfoPlus21:UA:Server'
+AND DisplayName LIKE 'AP7545%';
+
+SELECT * 
+INTO Eventhub7601
+FROM iothubreto18
+WHERE ApplicationUri='urn:GCHEAVIP21P:AspenTech:InfoPlus21:UA:Server'
+AND DisplayName LIKE 'AP7601%';
+
+SELECT * 
+INTO Chichimene
+FROM iothubreto18
+WHERE ApplicationUri='urn:GCHEAVIP21P:AspenTech:InfoPlus21:UA:Server'
+AND DisplayName LIKE 'CH_%';
