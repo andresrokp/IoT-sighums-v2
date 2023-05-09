@@ -67,14 +67,20 @@ GO
 
 SELECT * FROM dbo.ogisDataCut
 
-BULK INSERT contraincendiosh.ogisData
-FROM 'C:\Users\afrok\OneDrive\Escritorio\SigHums\EcoAzure\export_equipos&bodegasOGI_cop.csv'
-WITH(
-	FIELDTERMINATOR = ',',
-	ROWTERMINATOR = '\n'
-)
-GO
-
 
 INSERT INTO contraincendiosh.bodegas (name,latitude,longitude,tipo) VALUES ('Bodega C.I. Yondo','7.003304','-73.911276','fija');
 SELECT * FROM contraincendiosh.bodegas;
+
+
+CREATE TABLE contraincendiosh.registros
+(
+	id INT IDENTITY(1,1),
+    ts bigint NOT NULL,
+    gateId varchar(50) NOT NULL,
+    latitude decimal(10, 4) NOT NULL,
+    longitude decimal(10, 4) NOT NULL,
+    tag varchar(50) NOT NULL,
+    rssi decimal(10, 2) NOT NULL
+);
+
+SELECT * FROM contraincendiosh.registros
