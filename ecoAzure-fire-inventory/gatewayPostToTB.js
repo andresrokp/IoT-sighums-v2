@@ -1,9 +1,9 @@
-const log = console.log;
+const log = (str)=>console.log(JSON.stringify(str, null, 4));
 
 let {credentials, ecopetrolGateToken} = require('../myvars')
 
 // Pause message Telemetry to the specified device ID
-async function sendMessageToDevice(msg) {
+async function postTbGatewayDevice(msg) {
   // set variables
   const url = `https://${credentials.dns}/api/v1/${ecopetrolGateToken}/telemetry`;
   const headers = {
@@ -21,23 +21,25 @@ async function sendMessageToDevice(msg) {
 
 let start = performance.now()
 
-function gateMsgGenerator(gateId, latitude, longitude,  tagsArray){
-    return{
+function gateMsgGenerator(gateId, latitude, longitude, tagsQty){
+  let tagsArray = Array(tagsQty).fill().map((e,i)=>{return{tag:`${gateId} - ${i+1}${i+1}${i+1}`,rssi:Math.floor(40*Math.random())}});
+  return{
+      ts: new Date().getTime(),
+      values:{
         ts: new Date().getTime(),
-        values:{
-            ts: new Date().getTime(),
-            gateId,
-            latitude,
-            longitude, 
-            tagsArray
-        }
-    }
+        gateId,
+        latitude,
+        longitude, 
+        tagsArray
+      }
+  }
 }
 
-let msgGate1 = gateMsgGenerator(1,11,1111,[['1tag1','1rssi1']])
-let msgGate2 = gateMsgGenerator(2,2,2222,[['2tag1','2rssi1'],['2tag2','2rssi2']])
-let msgGate3 = gateMsgGenerator(3,33,3333,[['3tag1','3rssi1'],['3tag2','3rssi2'],['3tag3','3rssi3']])
+let msgGate = gateMsgGenerator('casabe',10.1111,-74.1111,7)
+log(msgGate)
+postTbGatewayDevice(msgGate)
 
-sendMessageToDevice(msgGate1)
 
+
+log(new Date())
 log(performance.now() - start)
