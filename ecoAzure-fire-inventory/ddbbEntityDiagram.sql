@@ -34,3 +34,20 @@ Table BODEGAS {
   instalacion varchar
 }
 
+Table INFO_SAP{
+  sap_id integer
+  dato_sap_1 varchar
+  dato_sap_2 varchar
+  dato_sap_3 varchar
+}
+
+Table INFO_OGIS{
+  ogis_id integer
+  dato_ogis_1 varchar
+  dato_osgi_2 varchar
+  dato_ogis_3 varchar
+}
+
+Ref: REGISTROS.tag_id > LINK_REG_TO_REC.tag_id
+Ref: LINK_REG_TO_REC.recurso_id > RECURSOS.recurso_id
+Ref: REGISTROS.gate_id > BODEGAS.gate_id
