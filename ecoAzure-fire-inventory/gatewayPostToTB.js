@@ -15,43 +15,50 @@ async function postTbGatewayDevice(msg) {
     const response = await fetch(url, { method: 'POST', headers, body });
     log(`Message sent to device ${msg.values.gateId}`); // response
   } catch (error) {
-    console.error(`Error sending message to device ${msg.values.gateId}:`, error);
+    console.error(`Error sending message to device ${msg.values.BodegaID}:`, error);
   }
 }
 
 let start = performance.now()
 
-function gateMsgGenerator(gateId, latitude, longitude, tagsQty){
-  let tagsArray = Array(tagsQty).fill().map((e,i)=>{return{tag:`${gateId} - ${i+1}${i+1}${i+1}`,rssi:Math.floor(40*Math.random())}});
-  switch (gateId) {
-    case 'casabe':
-      latitude = 7.003306
-      longitude = -73.911278
+function gateMsgGenerator(BodegaID, tagsArray){
+  // let tagsArray = Array(tagsQty).fill().map((e,i)=>{return{tag:`${gateId} - ${i+1}${i+1}${i+1}`,rssi:Math.floor(40*Math.random())}});
+  tagsArray = tagsArray.map(e=>{return{TagID:e,Rssi:Math.floor(40*Math.random())}});
+  let Latitude = 1.11111
+  let Longitude = -1.11111
+  switch (BodegaID) {
+    case 'bodega_id_2':
+      Latitude = 7.222222
+      Longitude = -73.22222
       break;
-    case 'cirainfantas':
-      latitude = 6.937194
-      longitude = -73.762806
-    case 'camion7303':
-      latitude = 7.111111
-      longitude = -73.888888
-    default:
-      latitude = 1.1
-      longitude = 1.1
+    case 'bodega_id_3':
+      Latitude = 6.33333
+      Longitude = -73.33333
+    case 'bodega_id_4':
+      Latitude = 7.44444
+      Longitude = -73.44444
+    case 'bodega_id_5':
+      Latitude = 7.55555
+      Longitude = -73.55555
   }
   return{
       ts: new Date().getTime(),
       values:{
-        ts: new Date().getTime(),
-        gateId,
-        latitude,
-        longitude, 
+        Ts: new Date().getTime(),
+        BodegaID,
+        Latitude,
+        Longitude, 
         tagsArray
       }
   }
 }
 
-let msgGate = gateMsgGenerator('casabe',7)
+let msgGate = gateMsgGenerator('bodega_id_2',['tag1','tag6','tag7'])
 log(msgGate)
+postTbGatewayDevice(msgGate)
+msgGate = gateMsgGenerator('bodega_id_3',['tag2','tag3'])
+postTbGatewayDevice(msgGate)
+msgGate = gateMsgGenerator('bodega_id_5',['tag4','tag5'])
 postTbGatewayDevice(msgGate)
 
 
