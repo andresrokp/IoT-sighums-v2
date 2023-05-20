@@ -13,7 +13,7 @@ async function postTbGatewayDevice(msg) {
   // try the post
   try {
     const response = await fetch(url, { method: 'POST', headers, body });
-    log(`Message sent to device ${msg.values.gateId}`); // response
+    log(`Message sent to device ${msg.values.BodegaID}`); // response
   } catch (error) {
     console.error(`Error sending message to device ${msg.values.BodegaID}:`, error);
   }

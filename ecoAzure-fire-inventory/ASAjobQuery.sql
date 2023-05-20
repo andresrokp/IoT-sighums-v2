@@ -1,34 +1,25 @@
 /*RETO 17*/
 
-/*
 SELECT
-    *
+    gatemsg.ts,
+    tagsTuples.arrayvalue.TagID,
+    tagsTuples.arrayvalue.Rssi,
+    gatemsg.BodegaID,
+    gatemsg.Latitude,
+    gatemsg.Longitude
 INTO
-    BlobEquiposMoviles
+    tablaRegistro
 FROM
-    iothubreto17
-WHERE
-    GetMetadatapropertyValue(iothubreto17, 'IoTHub.ConnectionDeviceId') = 'Ambulancia_HTX357';
-*/
-
-SELECT
-    tempName.arrayvalue.tag,
-    tempName.arrayvalue.rssi,
-    iothubreto17.ts,
-    iothubreto17.gateId,
-    iothubreto17.latitude,
-    iothubreto17.longitude
-INTO
-    dataencsv
-FROM
-    iothubreto17
+    rfidgatewaysR17 AS gatemsg
 CROSS APPLY
-    GetArrayElements(iothubreto17.tagsArray) AS tempName
-
+    GetArrayElements(gatemsg.tagsArray) AS tagsTuples
 /*
-TODO:
-save data as synapse SQL table
+SELECT    *
+INTO    BlobEquiposMoviles
+FROM    iothubreto17
+WHERE    GetMetadatapropertyValue(iothubreto17, 'IoTHub.ConnectionDeviceId') = 'Ambulancia_HTX357';
 */
+
 
 
 /*RETO 18*/
