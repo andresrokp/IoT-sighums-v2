@@ -147,3 +147,24 @@ GO
 --truncate
 TRUNCATE TABLE contraincendiosh.REGISTROS
 GO
+
+WITH CTE AS (
+    SELECT TagID, BodegaID, ROW_NUMBER() OVER (PARTITION BY TagID ORDER BY ts DESC) AS posicion
+    FROM contraincendiosh.REGISTROS
+)
+SELECT * --TagID, BodegaID
+FROM CTE
+WHERE posicion = 1;
+GO
+
+
+--TRIGGER para actualizar datos en TAGS en cada REGISTRO
+
+CREATE TRIGGER testTrigger
+ON contraincendiosh.REGISTROS
+AFTER INSERT
+AS
+	INSERT INTO contraincendiosh.TAGS_HYDRATION(TagID,BodegaID)
+	SELECT TagID,BodegaID
+	FROM INSERTED;
+GO
