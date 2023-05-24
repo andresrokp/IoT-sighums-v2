@@ -168,3 +168,64 @@ AS
 	SELECT TagID,BodegaID
 	FROM INSERTED;
 GO
+
+
+-- -- REGISTROS FORMULARIO
+
+--
+
+
+IF OBJECT_ID('contraincendiosh.REGISTRO_FORMULARIO_LOGS', 'U') IS NOT NULL
+DROP TABLE contraincendiosh.REGISTRO_FORMULARIO_LOGS
+GO
+--
+CREATE TABLE contraincendiosh.REGISTRO_FORMULARIO_LOGS (
+  recordID INT IDENTITY(1,1),
+  ts BIGINT,
+  BodegaID VARCHAR(255),
+  RecursoSapID INT,
+  Cantidad INT,
+  Diligenciante VARCHAR(255),
+  EstadoTeorico VARCHAR(255)
+);
+GO
+
+INSERT INTO contraincendiosh.REGISTRO_FORMULARIO_LOGS (ts, BodegaID, RecursoSapID, Cantidad, Diligenciante, EstadoTeorico)
+SELECT 1000000334, 'Bod1', 122, 5, 'persona11', 'Active' UNION
+SELECT 1000000827, 'Bod2', 122, 10, 'persona32', 'Inactive' UNION
+SELECT 1000000982, 'Bod2', 125, 3, 'persona31', 'Active' UNION
+SELECT 1000001001, 'Bod3', 121, 7, 'persona22', 'Active' UNION
+SELECT 1000001056, 'Bod4', 124, 8, 'persona41', 'Inactive' UNION
+SELECT 1000001152, 'Bod4', 123, 6, 'persona22', 'Active' UNION
+SELECT 1000001200, 'Bod1', 120, 9, 'persona51', 'Active' UNION
+SELECT 1000001256, 'Bod5', 125, 4, 'persona12', 'Inactive' UNION
+SELECT 1000001357, 'Bod3', 124, 2, 'persona31', 'Active' UNION
+SELECT 1000001409, 'Bod1', 123, 7, 'persona42', 'Active' UNION
+SELECT 1000001512, 'Bod2', 120, 6, 'persona11', 'Inactive' UNION
+SELECT 1000001608, 'Bod2', 123, 8, 'persona52', 'Active' UNION
+SELECT 1000001756, 'Bod4', 125, 5, 'persona41', 'Inactive' UNION
+SELECT 1000001803, 'Bod5', 121, 3, 'persona22', 'Active' UNION
+SELECT 1000001900, 'Bod5', 123, 10, 'persona13', 'Active' UNION
+SELECT 1000002021, 'Bod1', 125, 4, 'persona12', 'Active' UNION
+SELECT 1000002154, 'Bod2', 121, 9, 'persona41', 'Inactive' UNION
+SELECT 1000002210, 'Bod3', 122, 6, 'persona22', 'Active' UNION
+SELECT 1000002301, 'Bod3', 123, 7, 'persona51', 'Active' UNION
+SELECT 1000002412, 'Bod4', 121, 5, 'persona12', 'Inactive' UNION
+SELECT 1000002555, 'Bod5', 124, 8, 'persona31', 'Active' UNION
+SELECT 1000002611, 'Bod4', 120, 3, 'persona42', 'Active' UNION
+SELECT 1000002715, 'Bod1', 122, 6, 'persona21', 'Active' UNION
+SELECT 1000002819, 'Bod2', 123, 7, 'persona12', 'Inactive' UNION
+SELECT 1000002955, 'Bod2', 121, 9, 'persona51', 'Active' UNION
+SELECT 1000003020, 'Bod3', 120, 5, 'persona42', 'Inactive' UNION
+SELECT 1000003118, 'Bod5', 123, 8, 'persona21', 'Active' UNION
+SELECT 1000003256, 'Bod4', 124, 2, 'persona32', 'Active' UNION
+SELECT 1000003301, 'Bod4', 120, 7, 'persona11', 'Active' UNION
+SELECT 1000003410, 'Bod1', 125, 6, 'persona42', 'Inactive' UNION
+SELECT 1000003556, 'Bod2', 122, 4, 'persona21', 'Active'
+GO
+
+SELECT * FROM contraincendiosh.REGISTRO_FORMULARIO_LOGS
+GO
+
+TRUNCATE TABLE contraincendiosh.REGISTRO_FORMULARIO_LOGS
+GO
