@@ -63,17 +63,18 @@ SELECT * FROM contraincendiosh.RECURSOS
 
 --Tag vs recursos
 --drop
-IF OBJECT_ID('contraincendiosh.TAG_VS_RECURSOS','U') IS NOT NULL
-DROP TABLE contraincendiosh.TAG_VS_RECURSOS
+IF OBJECT_ID('contraincendiosh.TAGS_HYDRATION','U') IS NOT NULL
+DROP TABLE contraincendiosh.TAGS_HYDRATION
 GO
 --create
-CREATE TABLE contraincendiosh.TAG_VS_RECURSOS(
+CREATE TABLE contraincendiosh.TAGS_HYDRATION(
 	TagID nvarchar(255) not null,
-	RecursoID integer
+	RecursoID integer,
+	BodegaID nvarchar(255)
 )
 GO
 --insert
-INSERT INTO contraincendiosh.TAG_VS_RECURSOS(TagID,RecursoID)
+INSERT INTO contraincendiosh.TAGS_HYDRATION(TagID,RecursoID) --BodegaID)
 SELECT 'tag1',111 UNION
 SELECT 'tag2',222 UNION
 SELECT 'tag3',222 UNION
@@ -83,32 +84,8 @@ SELECT 'tag6',333 UNION
 SELECT 'tag7',444
 GO
 --select
-SELECT * FROM contraincendiosh.TAG_VS_RECURSOS
+SELECT * FROM contraincendiosh.TAGS_HYDRATION
 GO
-
-
-
-
---Drop REGISTROS
-IF OBJECT_ID('contraincendiosh.REGISTROS', 'U') IS NOT NULL
-DROP TABLE contraincendiosh.REGISTROS
-GO
-CREATE TABLE contraincendiosh.REGISTROS
-(
-	Id INT IDENTITY(1,1),
-    Ts bigint NOT NULL,
-    BodegaID varchar(50) NOT NULL,
-    Latitude decimal(10, 4) NOT NULL,
-    Longitude decimal(10, 4) NOT NULL,
-    TagID varchar(50) NOT NULL,
-    Rssi decimal(10, 2) NOT NULL
-);
-GO
-
-SELECT * FROM contraincendiosh.REGISTROS
-GO
-
--- contraincendiosh.REGISTROs (ID, Ts, BodegaID,Latitude, Longitude, TagID, Rssi)
 
 
 -- COMBINED TABLE
@@ -144,3 +121,29 @@ FROM
 	LEFT JOIN contraincendiosh.BODEGAS B ON R.BodegaID = B.BodegaID
 --select
 SELECT * FROM contraincendiosh.COMBINADO
+
+
+--Drop REGISTROS
+IF OBJECT_ID('contraincendiosh.REGISTROS', 'U') IS NOT NULL
+DROP TABLE contraincendiosh.REGISTROS
+GO
+CREATE TABLE contraincendiosh.REGISTROS
+(
+	--ID INT IDENTITY(1,1),
+    ts bigint NOT NULL,
+    BodegaID varchar(50) NOT NULL,
+    Latitude decimal(10, 4) NOT NULL,
+    Longitude decimal(10, 4) NOT NULL,
+    TagID varchar(50) NOT NULL,
+    Rssi decimal(10, 2) NOT NULL
+);
+GO
+--select
+SELECT * FROM contraincendiosh.REGISTROS
+ORDER BY ts
+go
+
+GO
+--truncate
+TRUNCATE TABLE contraincendiosh.REGISTROS
+GO
