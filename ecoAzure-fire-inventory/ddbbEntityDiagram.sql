@@ -1,16 +1,16 @@
 -- // Use DBML to define your database structure
 -- // Docs: https://dbml.dbdiagram.io/docs
 
-Table REGISTRO_GATEWAYS {
+Table REGISTRO_GATEWAYS_LOGS {
   ID integer [primary key]
   ts timestamp
-  TagID varchar
   BodegaID varchar
+  TagID varchar
   Longitude float
   Latitute float
 }
 
-Table TAG_VS_RECURSO {
+Table TAG_HYDRATION {
   TagID varchar [primary key]
   RecursoSapID integer
   BodegaID varchar
@@ -24,11 +24,9 @@ Table RECURSOS {
   Fabricante varchar
   Unidad varchar
   Capacidad integer
-  CodigoInventario integer
-  BodegaID varchar
+  BaseID varchar
   CodigoPec varchar
   ExpedienteLam varchar
-  BaseID varchar
   ActividadAplicacion varchar
   Observaciones varchar
 }
@@ -51,8 +49,22 @@ Table BASES {
   CorreoContacto varchar
 }
 
-Ref: REGISTRO_GATEWAYS.TagID > TAG_VS_RECURSO.TagID
-Ref: TAG_VS_RECURSO.RecursoSapID > RECURSOS.RecursoSapID
-Ref: REGISTRO_GATEWAYS.BodegaID > BODEGAS.BodegaID
-Ref: RECURSOS.BodegaID > BODEGAS.BodegaID
+Table REGISTRO_FORMULARIO_LOGS {
+  recordID integer [primary key]
+  ts datetime
+  BodegaID varchar
+  RecursoSapID integer
+  Cantidad integer
+  Diligenciante varchar
+  EstadoTeorico varchar
+}
+
+Ref: REGISTRO_GATEWAYS_LOGS.TagID > TAG_HYDRATION.TagID
+Ref: TAG_HYDRATION.RecursoSapID > RECURSOS.RecursoSapID
+Ref: REGISTRO_GATEWAYS_LOGS.BodegaID > BODEGAS.BodegaID
 Ref: RECURSOS.BaseID > BASES.BaseID
+
+
+Ref: "REGISTRO_FORMULARIO_LOGS"."RecursoSapID" > "RECURSOS"."RecursoSapID"
+
+Ref: "BODEGAS"."BodegaID" < "REGISTRO_FORMULARIO_LOGS"."BodegaID"
