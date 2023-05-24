@@ -53,12 +53,13 @@ function gateMsgGenerator(BodegaID, tagsArray){
   }
 }
 
-let msgGate = gateMsgGenerator('bodega_id_2',['tag1','tag6','tag7'])
+
+let msgGate = gateMsgGenerator('bodega_id_2',['tag8','tag7'])
 log(msgGate)
 postTbGatewayDevice(msgGate)
-msgGate = gateMsgGenerator('bodega_id_3',['tag2','tag3'])
+msgGate = gateMsgGenerator('bodega_id_3',['tag4'])
 postTbGatewayDevice(msgGate)
-msgGate = gateMsgGenerator('bodega_id_5',['tag4','tag5'])
+msgGate = gateMsgGenerator('bodega_id_5',['tag2','tag6'])
 postTbGatewayDevice(msgGate)
 
 
