@@ -44,7 +44,7 @@ function gateMsgGenerator(BodegaID, tagsArray){
   return{
       ts: new Date().getTime(),
       values:{
-        Ts: new Date().getTime(),
+        ts: new Date().getTime(),
         BodegaID,
         Latitude,
         Longitude, 
@@ -54,12 +54,12 @@ function gateMsgGenerator(BodegaID, tagsArray){
 }
 
 
-let msgGate = gateMsgGenerator('bodega_id_2',['tag8','tag7'])
+let msgGate = gateMsgGenerator('bodega_id_130',['tag8','tag7'])
 log(msgGate)
 postTbGatewayDevice(msgGate)
-msgGate = gateMsgGenerator('bodega_id_3',['tag4'])
+msgGate = gateMsgGenerator('bodega_id_131',['tag4'])
 postTbGatewayDevice(msgGate)
-msgGate = gateMsgGenerator('bodega_id_5',['tag2','tag6'])
+msgGate = gateMsgGenerator('bodega_id_132',['tag2','tag6'])
 postTbGatewayDevice(msgGate)
 
 
