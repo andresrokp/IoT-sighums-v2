@@ -88,41 +88,6 @@ SELECT * FROM contraincendiosh.TAGS_HYDRATION
 GO
 
 
--- COMBINED TABLE
---drop
-IF OBJECT_ID('contraincendiosh.COMBINADO', 'U') IS NOT NULL
-	DROP TABLE contraincendiosh.COMBINADO
-GO
---join select create
-SELECT
-	R.RecursoID,
-	R.NombreRecurso,
-	R.EspecificacionesEquipo,
-	R.EstadoTeorico,
-	R.Fabricante,
-	R.Unidad,
-	R.Capacidad,
-	R.CodigoInventario,
-	R.CodigoPec,
-	R.ExpedienteLam,
-	R.BaseRespuestaID,
-	R.ActividadAplicacion,
-	R.Observaciones,
-	B.NombreBodega,
-	B.TipoBodega,
-	B.FacilidadSistemaTransporte,
-	B.Instalacion,
-	B.Vicepresidencia,
-	B.GerenciaDpto
-INTO
-	contraincendiosh.COMBINADO
-FROM
-	contraincendiosh.RECURSOS R
-	LEFT JOIN contraincendiosh.BODEGAS B ON R.BodegaID = B.BodegaID
---select
-SELECT * FROM contraincendiosh.COMBINADO
-
-
 --Drop REGISTROS
 IF OBJECT_ID('contraincendiosh.REGISTROS', 'U') IS NOT NULL
 DROP TABLE contraincendiosh.REGISTROS
@@ -227,5 +192,52 @@ GO
 SELECT * FROM contraincendiosh.REGISTRO_FORMULARIO_LOGS
 GO
 
+WITH CTE AS(
+	SELECT BodegaID, RecursoSapID, Cantidad, ROW_NUMBER() OVER (PARTITION BY BodegaID, RecursoSapID ORDER BY ts DESC) AS rn
+	FROM contraincendiosh.REGISTRO_FORMULARIO_LOGS
+)
+SELECT BodegaID, RecursoSapID, Cantidad
+FROM CTE
+WHERE rn = 1
+ORDER BY BodegaID
+GO
+
 TRUNCATE TABLE contraincendiosh.REGISTRO_FORMULARIO_LOGS
 GO
+
+
+
+
+-- COMBINED TABLE
+--drop
+IF OBJECT_ID('contraincendiosh.COMBINADO', 'U') IS NOT NULL
+	DROP TABLE contraincendiosh.COMBINADO
+GO
+--join select create
+SELECT
+	R.RecursoID,
+	R.NombreRecurso,
+	R.EspecificacionesEquipo,
+	R.EstadoTeorico,
+	R.Fabricante,
+	R.Unidad,
+	R.Capacidad,
+	R.CodigoInventario,
+	R.CodigoPec,
+	R.ExpedienteLam,
+	R.BaseRespuestaID,
+	R.ActividadAplicacion,
+	R.Observaciones,
+	B.NombreBodega,
+	B.TipoBodega,
+	B.FacilidadSistemaTransporte,
+	B.Instalacion,
+	B.Vicepresidencia,
+	B.GerenciaDpto
+INTO
+	contraincendiosh.COMBINADO
+FROM
+	contraincendiosh.RECURSOS R
+	LEFT JOIN contraincendiosh.BODEGAS B ON R.BodegaID = B.BodegaID
+--select
+SELECT * FROM contraincendiosh.COMBINADO
