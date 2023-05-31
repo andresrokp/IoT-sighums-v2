@@ -53,11 +53,26 @@ CREATE TABLE contraincendiosh.RECURSOS (
 GO
 --insert RECURSOS
 INSERT INTO contraincendiosh.RECURSOS (RecursoID, NombreRecurso, EspecificacionesEquipo, EstadoTeorico, Fabricante, Unidad, Capacidad, CodigoInventario, BodegaID, CodigoPec, ExpedienteLam, BaseRespuestaID, ActividadAplicacion, Observaciones)
-select 111, 'nombre_1', 'especificaciones_1', 'estado_1', 'fabricante_1', 'unidad_1', 10, 1001, 'bodega_id_1', 'codigo_pec_1', 'expediente_lam_1', 'base_respuesta_id_1', 'actividad_1', 'observaciones_1' union
-select 222, 'nombre_2', 'especificaciones_2', 'estado_2', 'fabricante_2', 'unidad_2', 20, 1002, 'bodega_id_2', 'codigo_pec_2', 'expediente_lam_2', 'base_respuesta_id_2', 'actividad_2', 'observaciones_2' union
-select 333, 'nombre_3', 'especificaciones_3', 'estado_3', 'fabricante_3', 'unidad_3', 30, 1003, 'bodega_id_2', 'codigo_pec_3', 'expediente_lam_3', 'base_respuesta_id_3', 'actividad_3', 'observaciones_3' union
-select 444, 'nombre_4', 'especificaciones_4', 'estado_4', 'fabricante_4', 'unidad_4', 40, 1004, 'bodega_id_4', 'codigo_pec_4', 'expediente_lam_4', 'base_respuesta_id_4', 'actividad_4', 'observaciones_4' union
-select 555, 'nombre_5', 'especificaciones_5', 'estado_5', 'fabricante_5', 'unidad_5', 50, 1005, 'bodega_id_4', 'codigo_pec_5', 'expediente_lam_5', 'base_respuesta_id_5', 'actividad_5', 'observaciones_5'
+SELECT 100000011, 'MESA', 'especificaciones_1', 'estado_1', 'fabricante_1', 'unidad_1', 10, 1001, 'bodega_id_1', 'codigo_pec_1', 'expediente_lam_1', 'base_respuesta_id_1', 'actividad_1', 'observaciones_1' UNION
+SELECT 100000022, 'SILLA', 'especificaciones_2', 'estado_2', 'fabricante_2', 'unidad_2', 20, 1002, 'bodega_id_2', 'codigo_pec_2', 'expediente_lam_2', 'base_respuesta_id_2', 'actividad_2', 'observaciones_2' UNION
+SELECT 100000033, 'VASO', 'especificaciones_3', 'estado_3', 'fabricante_3', 'unidad_3', 30, 1003, 'bodega_id_3', 'codigo_pec_3', 'expediente_lam_3', 'base_respuesta_id_3', 'actividad_3', 'observaciones_3' UNION
+SELECT 100000044, 'TAZA', 'especificaciones_4', 'estado_4', 'fabricante_4', 'unidad_4', 40, 1004, 'bodega_id_4', 'codigo_pec_4', 'expediente_lam_4', 'base_respuesta_id_4', 'actividad_4', 'observaciones_4' UNION
+SELECT 100000055, 'CAMA', 'especificaciones_5', 'estado_5', 'fabricante_5', 'unidad_5', 50, 1005, 'bodega_id_5', 'codigo_pec_5', 'expediente_lam_5', 'base_respuesta_id_5', 'actividad_5', 'observaciones_5' UNION
+SELECT 100000066, 'LIBRO', 'especificaciones_6', 'estado_6', 'fabricante_6', 'unidad_6', 60, 1006, 'bodega_id_6', 'codigo_pec_6', 'expediente_lam_6', 'base_respuesta_id_6', 'actividad_6', 'observaciones_6' UNION
+SELECT 100000077, 'BOLSO', 'especificaciones_7', 'estado_7', 'fabricante_7', 'unidad_7', 70, 1007, 'bodega_id_7', 'codigo_pec_7', 'expediente_lam_7', 'base_respuesta_id_7', 'actividad_7', 'observaciones_7' UNION
+SELECT 100000088, 'PERRO', 'especificaciones_8', 'estado_8', 'fabricante_8', 'unidad_8', 80, 1008, 'bodega_id_8', 'codigo_pec_8', 'expediente_lam_8', 'base_respuesta_id_8', 'actividad_8', 'observaciones_8' UNION
+SELECT 100000099, 'GATO', 'especificaciones_9', 'estado_9', 'fabricante_9', 'unidad_9', 90, 1009, 'bodega_id_9', 'codigo_pec_9', 'expediente_lam_9', 'base_respuesta_id_9', 'actividad_9', 'observaciones_9' UNION
+SELECT 100001010, 'CASA', 'especificaciones_10', 'estado_10', 'fabricante_10', 'unidad_10', 100, 1010, 'bodega_id_10', 'codigo_pec_10', 'expediente_lam_10', 'base_respuesta_id_10', 'actividad_10', 'observaciones_10' UNION
+SELECT 100001121, 'RELOJ', 'especificaciones_11', 'estado_11', 'fabricante_11', 'unidad_11', 110, 1011, 'bodega_id_11', 'codigo_pec_11', 'expediente_lam_11', 'base_respuesta_id_11', 'actividad_11', 'observaciones_11' UNION
+SELECT 100001232, 'RUEDA', 'especificaciones_12', 'estado_12', 'fabricante_12', 'unidad_12', 120, 1012, 'bodega_id_12', 'codigo_pec_12', 'expediente_lam_12', 'base_respuesta_id_12', 'actividad_12', 'observaciones_12' UNION
+SELECT 100001343, 'TREN', 'especificaciones_13', 'estado_13', 'fabricante_13', 'unidad_13', 130, 1013, 'bodega_id_13', 'codigo_pec_13', 'expediente_lam_13', 'base_respuesta_id_13', 'actividad_13', 'observaciones_13' UNION
+SELECT 100001454, 'DEDO', 'especificaciones_14', 'estado_14', 'fabricante_14', 'unidad_14', 140, 1014, 'bodega_id_14', 'codigo_pec_14', 'expediente_lam_14', 'base_respuesta_id_14', 'actividad_14', 'observaciones_14' UNION
+SELECT 100001565, 'PELO', 'especificaciones_15', 'estado_15', 'fabricante_15', 'unidad_15', 150, 1015, 'bodega_id_15', 'codigo_pec_15', 'expediente_lam_15', 'base_respuesta_id_15', 'actividad_15', 'observaciones_15' UNION
+SELECT 100001676, 'CAJA', 'especificaciones_16', 'estado_16', 'fabricante_16', 'unidad_16', 160, 1016, 'bodega_id_16', 'codigo_pec_16', 'expediente_lam_16', 'base_respuesta_id_16', 'actividad_16', 'observaciones_16' UNION
+SELECT 100001787, 'TAPA', 'especificaciones_17', 'estado_17', 'fabricante_17', 'unidad_17', 170, 1017, 'bodega_id_17', 'codigo_pec_17', 'expediente_lam_17', 'base_respuesta_id_17', 'actividad_17', 'observaciones_17' UNION
+SELECT 100001898, 'PISO', 'especificaciones_18', 'estado_18', 'fabricante_18', 'unidad_18', 180, 1018, 'bodega_id_18', 'codigo_pec_18', 'expediente_lam_18', 'base_respuesta_id_18', 'actividad_18', 'observaciones_18' UNION
+SELECT 100001909, 'LLAVE', 'especificaciones_19', 'estado_19', 'fabricante_19', 'unidad_19', 190, 1019, 'bodega_id_19', 'codigo_pec_19', 'expediente_lam_19', 'base_respuesta_id_19', 'actividad_19', 'observaciones_19'
+GO
 --select
 SELECT * FROM contraincendiosh.RECURSOS
 
@@ -70,18 +85,30 @@ GO
 CREATE TABLE contraincendiosh.TAGS_HYDRATION(
 	TagID nvarchar(255) not null,
 	RecursoID integer,
-	BodegaID nvarchar(255)
+	LastBodegaID nvarchar(255)
 )
 GO
 --insert
-INSERT INTO contraincendiosh.TAGS_HYDRATION(TagID,RecursoID) --BodegaID)
-SELECT 'tag1',111 UNION
-SELECT 'tag2',222 UNION
-SELECT 'tag3',222 UNION
-SELECT 'tag4',222 UNION
-SELECT 'tag5',111 UNION
-SELECT 'tag6',333 UNION
-SELECT 'tag7',444
+INSERT INTO contraincendiosh.TAGS_HYDRATION(TagID,RecursoID)
+SELECT '1100EE00E2000020401302162510BBECB1B1', 100000011 UNION
+SELECT '1100EE00E2000020401302182500C3CD135B', 100000022 UNION
+SELECT '1100EE00E2000020401302032570BB05275C', 100000033 UNION
+SELECT '1100EE00E20000204013006925202B3AA0EA', 100000044 UNION
+SELECT '1100EE00E2000020401302072500BADBC4D7', 100000055 UNION
+SELECT '1100EE00E2000020401302232560CACF6939', 100000066 UNION
+SELECT '1100EE00E20000204013011925005BEFA789', 100000077 UNION
+SELECT '1100EE00E2000020401301562570800EB5EF', 100000088 UNION
+SELECT '1100EE00E2000020401302182510C3D16B04', 100000099 UNION
+SELECT '1100EE00E2000020401302062500B3C775D1', 100001010 UNION
+SELECT '1100EE00E20000204013011225104C0CD246', 100001111 UNION
+SELECT '1100EE00E2000020401302262550CB697740', 100001212 UNION
+SELECT '1100EE00E20000204013012125005BF020EF', 100001313 UNION
+SELECT '1100EE00E20000204013011825005493C0B8', 100001414 UNION
+SELECT '1100EE00E2000020401302082500B3C83A48', 100001515 UNION
+SELECT '1100EE00E200002040130174256091931CDF', 100001616 UNION
+SELECT '1100EE00E200002040130093249042967C72', 100001717 UNION
+SELECT '1100EE00E20000204013011524905BE50FC4', 100001818 UNION
+SELECT '1100EE00E2000020401300632520240FEE43', 100001919
 GO
 --select
 SELECT * FROM contraincendiosh.TAGS_HYDRATION
@@ -105,8 +132,8 @@ CREATE TABLE contraincendiosh.REGISTROS
 GO
 --select
 SELECT * FROM contraincendiosh.REGISTROS
-ORDER BY ts
-go
+ORDER BY ts DESC
+GO
 
 GO
 --truncate
@@ -123,6 +150,15 @@ WHERE posicion = 1;
 GO
 
 
+-- take last values
+GO
+DECLARE 
+@MAX  BIGINT = (SELECT MAX (ts) from [contraincendiosh].[REGISTROS])
+ 
+SELECT * FROM [contraincendiosh].[REGISTROS]
+WHERE ts = @MAX
+GO
+
 --TRIGGER para actualizar datos en TAGS en cada REGISTRO
 
 CREATE TRIGGER testTrigger
@@ -133,6 +169,7 @@ AS
 	SELECT TagID,BodegaID
 	FROM INSERTED;
 GO
+
 
 
 -- -- REGISTROS FORMULARIO
@@ -156,38 +193,55 @@ CREATE TABLE contraincendiosh.REGISTRO_FORMULARIO_LOGS (
 GO
 
 INSERT INTO contraincendiosh.REGISTRO_FORMULARIO_LOGS (ts, BodegaID, RecursoSapID, Cantidad, Diligenciante, EstadoTeorico)
-SELECT 1000000334, 'Bod1', 122, 5, 'persona11', 'Active' UNION
-SELECT 1000000827, 'Bod2', 122, 10, 'persona32', 'Inactive' UNION
-SELECT 1000000982, 'Bod2', 125, 3, 'persona31', 'Active' UNION
-SELECT 1000001001, 'Bod3', 121, 7, 'persona22', 'Active' UNION
-SELECT 1000001056, 'Bod4', 124, 8, 'persona41', 'Inactive' UNION
-SELECT 1000001152, 'Bod4', 123, 6, 'persona22', 'Active' UNION
-SELECT 1000001200, 'Bod1', 120, 9, 'persona51', 'Active' UNION
-SELECT 1000001256, 'Bod5', 125, 4, 'persona12', 'Inactive' UNION
-SELECT 1000001357, 'Bod3', 124, 2, 'persona31', 'Active' UNION
-SELECT 1000001409, 'Bod1', 123, 7, 'persona42', 'Active' UNION
-SELECT 1000001512, 'Bod2', 120, 6, 'persona11', 'Inactive' UNION
-SELECT 1000001608, 'Bod2', 123, 8, 'persona52', 'Active' UNION
-SELECT 1000001756, 'Bod4', 125, 5, 'persona41', 'Inactive' UNION
-SELECT 1000001803, 'Bod5', 121, 3, 'persona22', 'Active' UNION
-SELECT 1000001900, 'Bod5', 123, 10, 'persona13', 'Active' UNION
-SELECT 1000002021, 'Bod1', 125, 4, 'persona12', 'Active' UNION
-SELECT 1000002154, 'Bod2', 121, 9, 'persona41', 'Inactive' UNION
-SELECT 1000002210, 'Bod3', 122, 6, 'persona22', 'Active' UNION
-SELECT 1000002301, 'Bod3', 123, 7, 'persona51', 'Active' UNION
-SELECT 1000002412, 'Bod4', 121, 5, 'persona12', 'Inactive' UNION
-SELECT 1000002555, 'Bod5', 124, 8, 'persona31', 'Active' UNION
-SELECT 1000002611, 'Bod4', 120, 3, 'persona42', 'Active' UNION
-SELECT 1000002715, 'Bod1', 122, 6, 'persona21', 'Active' UNION
-SELECT 1000002819, 'Bod2', 123, 7, 'persona12', 'Inactive' UNION
-SELECT 1000002955, 'Bod2', 121, 9, 'persona51', 'Active' UNION
-SELECT 1000003020, 'Bod3', 120, 5, 'persona42', 'Inactive' UNION
-SELECT 1000003118, 'Bod5', 123, 8, 'persona21', 'Active' UNION
-SELECT 1000003256, 'Bod4', 124, 2, 'persona32', 'Active' UNION
-SELECT 1000003301, 'Bod4', 120, 7, 'persona11', 'Active' UNION
-SELECT 1000003410, 'Bod1', 125, 6, 'persona42', 'Inactive' UNION
-SELECT 1000003556, 'Bod2', 122, 4, 'persona21', 'Active'
+SELECT 1000000334, 'Bod1', 122, 5, 'persona1', 'Active' UNION
+SELECT 1000000827, 'Bod2', 122, 10, 'persona3', 'Inactive' UNION
+SELECT 1000000982, 'Bod2', 125, 3, 'persona3', 'Active' UNION
+SELECT 1000001001, 'Bod1', 120, 7, 'persona2', 'Active' UNION
+SELECT 1000001109, 'Bod3', 121, 2, 'persona1', 'Inactive' UNION
+SELECT 1000001222, 'Bod2', 120, 9, 'persona2', 'Active' UNION
+SELECT 1000001323, 'Bod3', 121, 4, 'persona3', 'Active' UNION
+SELECT 1000001436, 'Bod1', 122, 6, 'persona1', 'Inactive' UNION
+SELECT 1000001542, 'Bod2', 120, 3, 'persona3', 'Active' UNION
+SELECT 1000001637, 'Bod1', 122, 8, 'persona2', 'Active' UNION
+SELECT 1000001724, 'Bod2', 120, 5, 'persona1', 'Active' UNION
+SELECT 1000001820, 'Bod3', 122, 2, 'persona2', 'Inactive' UNION
+SELECT 1000001945, 'Bod3', 121, 4, 'persona3', 'Active' UNION
+SELECT 1000002063, 'Bod1', 120, 6, 'persona2', 'Active' UNION
+SELECT 1000002131, 'Bod2', 121, 9, 'persona1', 'Inactive' UNION
+SELECT 1000002230, 'Bod1', 122, 3, 'persona3', 'Active' UNION
+SELECT 1000002324, 'Bod2', 121, 7, 'persona2', 'Active' UNION
+SELECT 1000002442, 'Bod3', 120, 5, 'persona1', 'Active' UNION
+SELECT 1000002531, 'Bod1', 121, 2, 'persona2', 'Inactive' UNION
+SELECT 1000002627, 'Bod2', 120, 4, 'persona3', 'Active' UNION
+SELECT 1000002743, 'Bod3', 122, 6, 'persona1', 'Active' UNION
+SELECT 1000002836, 'Bod1', 120, 3, 'persona2', 'Active' UNION
+SELECT 1000002945, 'Bod2', 122, 9, 'persona3', 'Inactive' UNION
+SELECT 1000003063, 'Bod3', 121, 4, 'persona2', 'Active' UNION
+SELECT 1000003142, 'Bod1', 120, 6, 'persona1', 'Active' UNION
+SELECT 1000003267, 'Bod2', 121, 3, 'persona3', 'Active' UNION
+SELECT 1000003345, 'Bod3', 122, 8, 'persona2', 'Inactive' UNION
+SELECT 1000003462, 'Bod1', 121, 5, 'persona1', 'Active' UNION
+SELECT 1000003557, 'Bod2', 120, 2, 'persona3', 'Active' UNION
+SELECT 1000003624, 'Bod3', 122, 4, 'persona2', 'Active' UNION
+SELECT 1000003741, 'Bod1', 121, 6, 'persona1', 'Active' UNION
+SELECT 1000003826, 'Bod2', 120, 3, 'persona3', 'Inactive' UNION
+SELECT 1000003967, 'Bod3', 122, 7, 'persona2', 'Active' UNION
+SELECT 1000004052, 'Bod1', 120, 5, 'persona1', 'Active' UNION
+SELECT 1000004136, 'Bod2', 121, 2, 'persona3', 'Active' UNION
+SELECT 1000004263, 'Bod3', 122, 4, 'persona2', 'Inactive' UNION
+SELECT 1000004322, 'Bod1', 120, 6, 'persona1', 'Active' UNION
+SELECT 1000004441, 'Bod2', 121, 3, 'persona3', 'Active' UNION
+SELECT 1000004525, 'Bod3', 122, 7, 'persona2', 'Active' UNION
+SELECT 1000004644, 'Bod1', 120, 5, 'persona1', 'Active' UNION
+SELECT 1000004735, 'Bod2', 121, 2, 'persona3', 'Active' UNION
+SELECT 1000004867, 'Bod3', 122, 4, 'persona2', 'Active' UNION
+SELECT 1000004950, 'Bod1', 120, 6, 'persona1', 'Inactive' UNION
+SELECT 1000005069, 'Bod2', 121, 3, 'persona3', 'Active' UNION
+SELECT 1000005124, 'Bod3', 122, 7, 'persona2', 'Active' UNION
+SELECT 1000005241, 'Bod1', 120, 5, 'persona1', 'Active'
 GO
+
+
 
 SELECT * FROM contraincendiosh.REGISTRO_FORMULARIO_LOGS
 GO
