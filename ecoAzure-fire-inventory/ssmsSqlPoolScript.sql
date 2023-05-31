@@ -20,10 +20,13 @@ CREATE TABLE contraincendiosh.BODEGAS (
 GO
 --Fill bodegas
 INSERT INTO contraincendiosh.BODEGAS (BodegaID, NombreBodega, TipoBodega, FacilidadSistemaTransporte, Instalacion, Vicepresidencia, GerenciaDpto)
-select 'bodega_id_2', 'nombre_bodega_2', 'tipo_bodega_2', 'facilidad_sistema_transporte_2', 'instalacion_2', 'vicepresidencia_2', 'gerencia_2' union
-select 'bodega_id_3', 'nombre_bodega_3', 'tipo_bodega_3', 'facilidad_sistema_transporte_3', 'instalacion_3', 'vicepresidencia_3', 'gerencia_3' union
-select 'bodega_id_4', 'nombre_bodega_4', 'tipo_bodega_4', 'facilidad_sistema_transporte_4', 'instalacion_4', 'vicepresidencia_4', 'gerencia_4' union
-select 'bodega_id_5', 'nombre_bodega_5', 'tipo_bodega_5', 'facilidad_sistema_transporte_5', 'instalacion_5', 'vicepresidencia_5', 'gerencia_5'
+select 'camion7303', 'CAMION 7303', 'tipo_bodega_1', 'facilidad_sistema_transporte_1', 'instalacion_1', 'vicepresidencia_1', 'gerencia_1' UNION
+select 'cielcentro', 'C.I. EL CENTRO', 'tipo_bodega_2', 'facilidad_sistema_transporte_2', 'instalacion_2', 'vicepresidencia_2', 'gerencia_2' union
+select 'lisamallanito', 'LISAMA LLANITO', 'tipo_bodega_3', 'facilidad_sistema_transporte_3', 'instalacion_3', 'vicepresidencia_3', 'gerencia_3' union
+select 'campocasabe1', 'CAMPO CASABE 1', 'tipo_bodega_4', 'facilidad_sistema_transporte_4', 'instalacion_4', 'vicepresidencia_4', 'gerencia_4' union
+select 'yaguaramangos', 'ESTACION YAGUARÁ-MANGOS', 'tipo_bodega_5', 'facilidad_sistema_transporte_5', 'instalacion_5', 'vicepresidencia_5', 'gerencia_5' UNION
+select 'cirainfantaci', 'BODEGA C.I. CIRA INFANTA', 'tipo_bodega_6', 'facilidad_sistema_transporte_6', 'instalacion_6', 'vicepresidencia_6', 'gerencia_6' UNION
+select 'bodega_id_147', 'CASA DEL LLOPO', 'tipo_bodega_5', 'facilidad_sistema_transporte_5', 'instalacion_5', 'vicepresidencia_5', 'gerencia_5'
 --select
 SELECT * FROM contraincendiosh.BODEGAS
 GO
@@ -53,28 +56,37 @@ CREATE TABLE contraincendiosh.RECURSOS (
 GO
 --insert RECURSOS
 INSERT INTO contraincendiosh.RECURSOS (RecursoID, NombreRecurso, EspecificacionesEquipo, EstadoTeorico, Fabricante, Unidad, Capacidad, CodigoInventario, BodegaID, CodigoPec, ExpedienteLam, BaseRespuestaID, ActividadAplicacion, Observaciones)
-SELECT 100000011, 'MESA', 'especificaciones_1', 'estado_1', 'fabricante_1', 'unidad_1', 10, 1001, 'bodega_id_1', 'codigo_pec_1', 'expediente_lam_1', 'base_respuesta_id_1', 'actividad_1', 'observaciones_1' UNION
-SELECT 100000022, 'SILLA', 'especificaciones_2', 'estado_2', 'fabricante_2', 'unidad_2', 20, 1002, 'bodega_id_2', 'codigo_pec_2', 'expediente_lam_2', 'base_respuesta_id_2', 'actividad_2', 'observaciones_2' UNION
-SELECT 100000033, 'VASO', 'especificaciones_3', 'estado_3', 'fabricante_3', 'unidad_3', 30, 1003, 'bodega_id_3', 'codigo_pec_3', 'expediente_lam_3', 'base_respuesta_id_3', 'actividad_3', 'observaciones_3' UNION
-SELECT 100000044, 'TAZA', 'especificaciones_4', 'estado_4', 'fabricante_4', 'unidad_4', 40, 1004, 'bodega_id_4', 'codigo_pec_4', 'expediente_lam_4', 'base_respuesta_id_4', 'actividad_4', 'observaciones_4' UNION
-SELECT 100000055, 'CAMA', 'especificaciones_5', 'estado_5', 'fabricante_5', 'unidad_5', 50, 1005, 'bodega_id_5', 'codigo_pec_5', 'expediente_lam_5', 'base_respuesta_id_5', 'actividad_5', 'observaciones_5' UNION
-SELECT 100000066, 'LIBRO', 'especificaciones_6', 'estado_6', 'fabricante_6', 'unidad_6', 60, 1006, 'bodega_id_6', 'codigo_pec_6', 'expediente_lam_6', 'base_respuesta_id_6', 'actividad_6', 'observaciones_6' UNION
-SELECT 100000077, 'BOLSO', 'especificaciones_7', 'estado_7', 'fabricante_7', 'unidad_7', 70, 1007, 'bodega_id_7', 'codigo_pec_7', 'expediente_lam_7', 'base_respuesta_id_7', 'actividad_7', 'observaciones_7' UNION
-SELECT 100000088, 'PERRO', 'especificaciones_8', 'estado_8', 'fabricante_8', 'unidad_8', 80, 1008, 'bodega_id_8', 'codigo_pec_8', 'expediente_lam_8', 'base_respuesta_id_8', 'actividad_8', 'observaciones_8' UNION
-SELECT 100000099, 'GATO', 'especificaciones_9', 'estado_9', 'fabricante_9', 'unidad_9', 90, 1009, 'bodega_id_9', 'codigo_pec_9', 'expediente_lam_9', 'base_respuesta_id_9', 'actividad_9', 'observaciones_9' UNION
-SELECT 100001010, 'CASA', 'especificaciones_10', 'estado_10', 'fabricante_10', 'unidad_10', 100, 1010, 'bodega_id_10', 'codigo_pec_10', 'expediente_lam_10', 'base_respuesta_id_10', 'actividad_10', 'observaciones_10' UNION
-SELECT 100001121, 'RELOJ', 'especificaciones_11', 'estado_11', 'fabricante_11', 'unidad_11', 110, 1011, 'bodega_id_11', 'codigo_pec_11', 'expediente_lam_11', 'base_respuesta_id_11', 'actividad_11', 'observaciones_11' UNION
-SELECT 100001232, 'RUEDA', 'especificaciones_12', 'estado_12', 'fabricante_12', 'unidad_12', 120, 1012, 'bodega_id_12', 'codigo_pec_12', 'expediente_lam_12', 'base_respuesta_id_12', 'actividad_12', 'observaciones_12' UNION
-SELECT 100001343, 'TREN', 'especificaciones_13', 'estado_13', 'fabricante_13', 'unidad_13', 130, 1013, 'bodega_id_13', 'codigo_pec_13', 'expediente_lam_13', 'base_respuesta_id_13', 'actividad_13', 'observaciones_13' UNION
-SELECT 100001454, 'DEDO', 'especificaciones_14', 'estado_14', 'fabricante_14', 'unidad_14', 140, 1014, 'bodega_id_14', 'codigo_pec_14', 'expediente_lam_14', 'base_respuesta_id_14', 'actividad_14', 'observaciones_14' UNION
-SELECT 100001565, 'PELO', 'especificaciones_15', 'estado_15', 'fabricante_15', 'unidad_15', 150, 1015, 'bodega_id_15', 'codigo_pec_15', 'expediente_lam_15', 'base_respuesta_id_15', 'actividad_15', 'observaciones_15' UNION
-SELECT 100001676, 'CAJA', 'especificaciones_16', 'estado_16', 'fabricante_16', 'unidad_16', 160, 1016, 'bodega_id_16', 'codigo_pec_16', 'expediente_lam_16', 'base_respuesta_id_16', 'actividad_16', 'observaciones_16' UNION
-SELECT 100001787, 'TAPA', 'especificaciones_17', 'estado_17', 'fabricante_17', 'unidad_17', 170, 1017, 'bodega_id_17', 'codigo_pec_17', 'expediente_lam_17', 'base_respuesta_id_17', 'actividad_17', 'observaciones_17' UNION
-SELECT 100001898, 'PISO', 'especificaciones_18', 'estado_18', 'fabricante_18', 'unidad_18', 180, 1018, 'bodega_id_18', 'codigo_pec_18', 'expediente_lam_18', 'base_respuesta_id_18', 'actividad_18', 'observaciones_18' UNION
-SELECT 100001909, 'LLAVE', 'especificaciones_19', 'estado_19', 'fabricante_19', 'unidad_19', 190, 1019, 'bodega_id_19', 'codigo_pec_19', 'expediente_lam_19', 'base_respuesta_id_19', 'actividad_19', 'observaciones_19'
+SELECT 100000011, 'MESA', 'especificaciones_1', 'ACTIVO', 'fabricante_1', 'unidad_1', 10, 1001, 'bodega_id_1', 'codigo_pec_1', 'expediente_lam_1', 'base_respuesta_id_1', 'EQUIPOS Y HERRAMIENTAS/RESCATE', 'observaciones_1' UNION
+SELECT 100000022, 'SILLA', 'especificaciones_2', 'ACTIVO', 'fabricante_2', 'unidad_2', 20, 1002, 'bodega_id_2', 'codigo_pec_2', 'expediente_lam_2', 'base_respuesta_id_2', 'DETECCIÓN Y ALARMA/CONTRAINCENDIO', 'observaciones_2' UNION
+SELECT 100000033, 'VASO', 'especificaciones_3', 'INACTIVO', 'fabricante_3', 'unidad_3', 30, 1003, 'bodega_id_3', 'codigo_pec_3', 'expediente_lam_3', 'base_respuesta_id_3', 'EXTINCIÓN OTROS AGENTES/CONTRAINCENDIO', 'observaciones_3' UNION
+SELECT 100000044, 'TAZA', 'especificaciones_4', 'INACTIVO', 'fabricante_4', 'unidad_4', 40, 1004, 'bodega_id_4', 'codigo_pec_4', 'expediente_lam_4', 'base_respuesta_id_4', 'EQUIPOS Y HERRAMIENTAS/RESCATE', 'observaciones_4' UNION
+SELECT 100000055, 'CAMA', 'especificaciones_5', 'ACTIVO', 'fabricante_5', 'unidad_5', 50, 1005, 'bodega_id_5', 'codigo_pec_5', 'expediente_lam_5', 'base_respuesta_id_5', 'CONTENCIÓN/DERRAMES', 'observaciones_5' UNION
+SELECT 100000066, 'LIBRO', 'especificaciones_6', 'ACTIVO', 'fabricante_6', 'unidad_6', 60, 1006, 'bodega_id_6', 'codigo_pec_6', 'expediente_lam_6', 'base_respuesta_id_6', 'EPP EMERGENCIAS/HAZMAT', 'observaciones_6' UNION
+SELECT 100000077, 'BOLSO', 'especificaciones_7', 'INACTIVO', 'fabricante_7', 'unidad_7', 70, 1007, 'bodega_id_7', 'codigo_pec_7', 'expediente_lam_7', 'base_respuesta_id_7', 'CONTENCIÓN/DERRAMES', 'observaciones_7' UNION
+SELECT 100000088, 'PERRO', 'especificaciones_8', 'ACTIVO', 'fabricante_8', 'unidad_8', 80, 1008, 'bodega_id_8', 'codigo_pec_8', 'expediente_lam_8', 'base_respuesta_id_8', 'EQUIPOS Y HERRAMIENTAS/RESCATE', 'observaciones_8' UNION
+SELECT 100000099, 'GATO', 'especificaciones_9', 'REVISION', 'fabricante_9', 'unidad_9', 90, 1009, 'bodega_id_9', 'codigo_pec_9', 'expediente_lam_9', 'base_respuesta_id_9', 'CONTENCIÓN/DERRAMES', 'observaciones_9' UNION
+SELECT 100001010, 'CASA', 'especificaciones_10', 'ACTIVO', 'fabricante_10', 'unidad_10', 100, 1010, 'bodega_id_10', 'codigo_pec_10', 'expediente_lam_10', 'base_respuesta_id_10', 'EXTINCIÓN OTROS AGENTES/CONTRAINCENDIO', 'observaciones_10' UNION
+SELECT 100001111, 'RELOJ', 'especificaciones_11', 'ACTIVO', 'fabricante_11', 'unidad_11', 110, 1011, 'bodega_id_11', 'codigo_pec_11', 'expediente_lam_11', 'base_respuesta_id_11', 'CONTENCIÓN/DERRAMES', 'observaciones_11' UNION
+SELECT 100001212, 'RUEDA', 'especificaciones_12', 'INACTIVO', 'fabricante_12', 'unidad_12', 120, 1012, 'bodega_id_12', 'codigo_pec_12', 'expediente_lam_12', 'base_respuesta_id_12', 'DETECCIÓN Y ALARMA/CONTRAINCENDIO', 'observaciones_12' UNION
+SELECT 100001313, 'TREN', 'especificaciones_13', 'INACTIVO', 'fabricante_13', 'unidad_13', 130, 1013, 'bodega_id_13', 'codigo_pec_13', 'expediente_lam_13', 'base_respuesta_id_13', 'EQUIPOS Y HERRAMIENTAS/RESCATE', 'observaciones_13' UNION
+SELECT 100001414, 'DEDO', 'especificaciones_14', 'ACTIVO', 'fabricante_14', 'unidad_14', 140, 1014, 'bodega_id_14', 'codigo_pec_14', 'expediente_lam_14', 'base_respuesta_id_14', 'DETECCIÓN Y ALARMA/CONTRAINCENDIO', 'observaciones_14' UNION
+SELECT 100001515, 'PELO', 'especificaciones_15', 'REVISION', 'fabricante_15', 'unidad_15', 150, 1015, 'bodega_id_15', 'codigo_pec_15', 'expediente_lam_15', 'base_respuesta_id_15', 'EXTINCIÓN OTROS AGENTES/CONTRAINCENDIO', 'observaciones_15' UNION
+SELECT 100001616, 'CAJA', 'especificaciones_16', 'ACTIVO', 'fabricante_16', 'unidad_16', 160, 1016, 'bodega_id_16', 'codigo_pec_16', 'expediente_lam_16', 'base_respuesta_id_16', 'EQUIPOS Y HERRAMIENTAS/RESCATE', 'observaciones_16' UNION
+SELECT 100001717, 'TAPA', 'especificaciones_17', 'REVISION', 'fabricante_17', 'unidad_17', 170, 1017, 'bodega_id_17', 'codigo_pec_17', 'expediente_lam_17', 'base_respuesta_id_17', 'EPP EMERGENCIAS/HAZMAT', 'observaciones_17' UNION
+SELECT 100001818, 'PISO', 'especificaciones_18', 'ACTIVO', 'fabricante_18', 'unidad_18', 180, 1018, 'bodega_id_18', 'codigo_pec_18', 'expediente_lam_18', 'base_respuesta_id_18', 'EPP EMERGENCIAS/HAZMAT', 'observaciones_18' UNION
+SELECT 100001919, 'LLAVE', 'especificaciones_19', 'REVISION', 'fabricante_19', 'unidad_19', 190, 1019, 'bodega_id_19', 'codigo_pec_19', 'expediente_lam_19', 'base_respuesta_id_19', 'DETECCIÓN Y ALARMA/CONTRAINCENDIO', 'observaciones_19'
 GO
 --select
 SELECT * FROM contraincendiosh.RECURSOS
+GO
+
+--truncate
+TRUNCATE TABLE contraincendiosh.RECURSOS
+GO
+
+
+
+
 
 --Tag vs recursos
 --drop
@@ -163,11 +175,10 @@ INSERT INTO contraincendiosh.REGISTROS_GATEWAYS_LOGS (ts, BodegaID, Latitude, Lo
 GO
 
 GO
---truncate
 
 INSERT INTO contraincendiosh.REGISTROS_GATEWAYS_LOGS (ts, BodegaID, Latitude, Longitude, TagID, Rssi)
-	SELECT DATEDIFF(MILLISECOND,'2023-05-31T02:26:40',GETDATE())+1685500000000, 'oficinasrefineria', 1.23, 3.21, '1100EE00E200002040130174256091931CDF', -68 UNION
-	SELECT DATEDIFF(MILLISECOND,'2023-05-31T02:26:40',GETDATE())+1685500000000, 'oficinasrefineria', 1.23, 3.21, '1100EE00E200002040130093249042967C72', -68
+	SELECT DATEDIFF(MILLISECOND,'2023-05-31T02:26:40',GETDATE())+1685500000000, 'bodega_id_147', 1.23, 3.21, '1100EE00E200002040130174256091931CDF', -68 UNION
+	SELECT DATEDIFF(MILLISECOND,'2023-05-31T02:26:40',GETDATE())+1685500000000, 'bodega_id_147', 1.23, 3.21, '1100EE00E200002040130093249042967C72', -68
 GO
 
 --select
@@ -188,7 +199,6 @@ FROM CTE
 WHERE posicion = 1;
 GO
 
-
 -- take last values
 GO
 DECLARE 
@@ -204,7 +214,7 @@ CREATE TRIGGER testTrigger
 ON contraincendiosh.REGISTROS_GATEWAYS_LOGS
 AFTER INSERT
 AS
-	INSERT INTO contraincendiosh.TAGS_HYDRATION(TagID,BodegaID)
+	INSERT INTO contraincendiosh.TAGS_HYDRATION(TagID,LastBodegaID)
 	SELECT TagID,BodegaID
 	FROM INSERTED;
 GO
@@ -334,3 +344,17 @@ FROM
 	LEFT JOIN contraincendiosh.BODEGAS B ON R.BodegaID = B.BodegaID
 --select
 SELECT * FROM contraincendiosh.COMBINADO
+
+
+SELECT
+	RGL.ts,
+	R.NombreRecurso,
+	TH.RecursoID,
+	R.EstadoTeorico,
+	R.ActividadAplicacion,
+	RGL.TagID
+FROM
+	contraincendiosh.REGISTROS_GATEWAYS_LOGS RGL
+	LEFT JOIN contraincendiosh.TAGS_HYDRATION TH ON RGL.TagID = TH.TagID
+	LEFT JOIN contraincendiosh.RECURSOS R ON TH.RecursoID = R.RecursoID
+GO
