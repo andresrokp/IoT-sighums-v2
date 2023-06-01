@@ -72,3 +72,57 @@ log(performance.now() - start)
 // recurso_id,nombre,especificaciones,estado,fabricante,unidad,cod_inventario,sap_id,ogis_id,idRec1, Otro, Extintor de 20 lbs PQS, OPERATIVO, ANSUL, und, N.A.
 // idRec2, Manguera doble chaqueta, Manguera 2.5" x 100 ft, OPERATIVO, DURALINE, und, N.A.
 // idRec3, Desfibriliador automatico, Desfibrilador monitor, NO OPERATIVO, ZOLL, und, TLOI122132
+
+
+
+/*
+
+Filtrado de mensaje Gateway a Azure
+
+//<< Adición de ts >>
+if(!msg.ts) msg.ts = new Date().getTime()
+return {msg: msg, metadata: metadata, msgType: msgType};
+
+//<< verificación buen mensaje >>
+var esBuenMensaje = !!msg.ts && !!msg.Latitude && !!msg.Longitude && !!(msg.tagsArray.length > 0) && !!msg.BodegaID
+return esBuenMensaje;
+
+{
+    "BodegaID": 9.9999,
+    "Latitude": 10,
+    "Longitude": 6.66667,
+    "tagsArray": [],
+    "ts": 1685651855093
+}
+
+{
+    "INTERVALO_SUBIDA": "300002",
+    "CHANGE_ONLY": true,
+    "ts": 1685652027230
+}
+
+{
+    "INTERVALO_SUBIDA": "300001",
+    "ts": 1685652016214
+}
+
+{
+    "BodegaID": "bodega_id_147",
+    "Latitude": 1.66667,
+    "Longitude": 6.66667,
+    "tagsArray": [{
+        "TagID": "1100EE00E200002040130093249042967C72",
+        "Rssi": -54,
+        "Numero": 0
+    }, {
+        "TagID": "1100EE00E20000204013012125005BF020EF",
+        "Rssi": -54,
+        "Numero": 1
+    }, {
+        "TagID": "1100EE00E20000204013011825005493C0B8",
+        "Rssi": -54,
+        "Numero": 2
+    }],
+    "ts": 1685650700384
+}
+*/
