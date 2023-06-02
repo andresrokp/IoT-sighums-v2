@@ -186,18 +186,23 @@ SELECT * FROM contraincendiosh.REGISTROS_GATEWAYS_LOGS
 ORDER BY ts DESC
 GO
 
---truncate
-TRUNCATE TABLE contraincendiosh.REGISTROS_GATEWAYS_LOGS
-GO
-
 WITH CTE AS (
-    SELECT TagID, BodegaID, ROW_NUMBER() OVER (PARTITION BY TagID ORDER BY ts DESC) AS posicion
+    SELECT ts,TagID, BodegaID, ROW_NUMBER() OVER (PARTITION BY TagID ORDER BY ts DESC) AS posicion
     FROM contraincendiosh.REGISTROS_GATEWAYS_LOGS
 )
-SELECT * --TagID, BodegaID
+SELECT 
+	CTE.ts,
+	R.NombreRecurso,
+	B.NombreBodega,
+	CTE.TagID
 FROM CTE
-WHERE posicion = 1;
+	LEFT JOIN contraincendiosh.TAGS_HYDRATION TH ON CTE.TagID = TH.TagID
+	LEFT JOIN contraincendiosh.RECURSOS R ON R.RecursoID = TH.RecursoID
+	LEFT JOIN contraincendiosh.BODEGAS B ON CTE.BodegaID = B.BodegaID
+WHERE posicion = 1
+ORDER BY ts DESC;
 GO
+
 
 -- take last values
 GO
@@ -206,6 +211,10 @@ DECLARE
  
 SELECT * FROM [contraincendiosh].REGISTROS_GATEWAYS_LOGS
 WHERE ts = @MAX
+GO
+
+--truncate
+TRUNCATE TABLE contraincendiosh.REGISTROS_GATEWAYS_LOGS
 GO
 
 --TRIGGER para actualizar datos en TAGS en cada REGISTRO
@@ -361,3 +370,5 @@ FROM
 	LEFT JOIN contraincendiosh.BODEGAS B ON RGL.BodegaID = B.BodegaID
 ORDER BY ts DESC
 GO
+
+SELECT * FROM contraincendiosh.REGISTROS_GATEWAYS_LOGS ORDER BY ts DESC
