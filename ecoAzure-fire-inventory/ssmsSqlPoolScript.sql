@@ -26,11 +26,15 @@ select 'lisamallanito', 'LISAMA LLANITO', 'tipo_bodega_3', 'facilidad_sistema_tr
 select 'campocasabe1', 'CAMPO CASABE 1', 'tipo_bodega_4', 'facilidad_sistema_transporte_4', 'instalacion_4', 'vicepresidencia_4', 'gerencia_4' union
 select 'yaguaramangos', 'ESTACION YAGUARÁ-MANGOS', 'tipo_bodega_5', 'facilidad_sistema_transporte_5', 'instalacion_5', 'vicepresidencia_5', 'gerencia_5' UNION
 select 'cirainfantaci', 'BODEGA C.I. CIRA INFANTA', 'tipo_bodega_6', 'facilidad_sistema_transporte_6', 'instalacion_6', 'vicepresidencia_6', 'gerencia_6' UNION
+select 'CEM', 'ESTACION CEM', 'tipo_bodega_6', 'facilidad_sistema_transporte_6', 'instalacion_6', 'vicepresidencia_6', 'gerencia_6' UNION
 select 'bodega_id_147', 'CASA DEL LLOPO', 'tipo_bodega_5', 'facilidad_sistema_transporte_5', 'instalacion_5', 'vicepresidencia_5', 'gerencia_5'
 --select
 SELECT * FROM contraincendiosh.BODEGAS
 GO
 
+INSERT INTO contraincendiosh.BODEGAS (BodegaID, NombreBodega, TipoBodega, FacilidadSistemaTransporte, Instalacion, Vicepresidencia, GerenciaDpto)
+select 'cem', 'ESTACIÓN DE EMERGENCIAS CEM', 'tipo_bodega_6', 'facilidad_sistema_transporte_6', 'instalacion_6', 'vicepresidencia_6', 'gerencia_6'
+GO
 
 --Drop RECURSOS
 IF OBJECT_ID('contraincendiosh.RECURSOS', 'U') IS NOT NULL
@@ -44,8 +48,7 @@ CREATE TABLE contraincendiosh.RECURSOS (
   EstadoTeorico nvarchar(255),
   Fabricante nvarchar(255),
   Unidad nvarchar(255),
-  Capacidad integer,
-  CodigoInventario integer,
+  Capacidad decimal(10, 3),
   BodegaID nvarchar(255),
   CodigoPec nvarchar(255),
   ExpedienteLam nvarchar(255),
@@ -84,8 +87,11 @@ GO
 TRUNCATE TABLE contraincendiosh.RECURSOS
 GO
 
+ALTER TABLE contraincendiosh.RECURSOS
+ALTER COLUMN Capacidad decimal(10, 3)
 
-
+ALTER TABLE contraincendiosh.RECURSOS
+DROP COLUMN CodigoInventario
 
 
 --Tag vs recursos
@@ -371,4 +377,43 @@ FROM
 ORDER BY ts DESC
 GO
 
+
 SELECT * FROM contraincendiosh.REGISTROS_GATEWAYS_LOGS ORDER BY ts DESC
+
+
+INSERT INTO contraincendiosh.RECURSOSdedestinoprueba
+SELECT *
+FROM dbo.RecursosRealesPrueba1
+
+
+SELECT * FROM contraincendiosh.RECURSOS
+
+--pruebas de compatibilidad columna por columna
+
+
+SELECT * FROM dbo.RecursosRealesPrueba1
+
+DROP TABLE contraincendiosh.RECURSOSdedestinoprueba
+
+SELECT *
+INTO contraincendiosh.RECURSOSdedestinoprueba
+FROM contraincendiosh.RECURSOS
+
+--Insertar a recursos desde importado por columna
+INSERT INTO contraincendiosh.RECURSOSdedestinoprueba(RecursoID, NombreRecurso, EspecificacionesEquipo, EstadoTeorico, Fabricante, Unidad, Capacidad, BodegaID, CodigoPec, ExpedienteLam, BaseRespuestaID, ActividadAplicacion, Observaciones)
+SELECT RecursoID, NombreRecurso, EspecificacionesEquipo, EstadoTeorico, Fabricante, Unidad, Capacidad, BodegaID, CodigoPec, ExpedienteLam, BaseRespuestaID, ActividadAplicacion, Observaciones
+FROM dbo.RecursosRealesPrueba1
+
+SELECT * FROM contraincendiosh.RECURSOSdedestinoprueba
+
+
+--mock up feo para conexion OGIS
+SELECT *
+INTO contraincendiosh.RecursosPseudoRealesPruebaOgis2
+FROM dbo.RecursosPseudoRealesPruebaOgis2
+
+SELECT * from contraincendiosh.RecursosPseudoRealesPruebaOgis2
+
+SELECT * from dbo.RecursosPseudoRealesPruebaOgis2
+
+DROP TABLE dbo.RecursosPseudoRealesPruebaOgis2
