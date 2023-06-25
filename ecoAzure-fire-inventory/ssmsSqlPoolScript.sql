@@ -131,6 +131,17 @@ GO
 SELECT * FROM contraincendiosh.TAGS_HYDRATION
 GO
 
+-- trea los tags con el nombre del equipo
+SELECT
+	TH.TagID,
+	TH.EquipoID,
+	E.NombreEquipo
+FROM
+	contraincendiosh.TAGS_HYDRATION TH
+	LEFT JOIN contraincendiosh.EQUIPOS E ON TH.EquipoID = E.EquipoID
+GO
+
+
 
 
 --Drop REGISTROS
