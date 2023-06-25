@@ -102,12 +102,11 @@ GO
 CREATE TABLE contraincendiosh.TAGS_HYDRATION(
 	
 	TagID nvarchar(255) not null,
-	RecursoID integer,
-	LastBodegaID nvarchar(255)
+	EquipoID integer
 )
 GO
 --insert
-INSERT INTO contraincendiosh.TAGS_HYDRATION(TagID,RecursoID)
+INSERT INTO contraincendiosh.TAGS_HYDRATION(TagID,EquipoID)
 SELECT '1100EE00E2000020401302162510BBECB1B1', 100000011 UNION
 SELECT '1100EE00E2000020401302182500C3CD135B', 100000022 UNION
 SELECT '1100EE00E2000020401302032570BB05275C', 100000033 UNION
@@ -131,6 +130,7 @@ GO
 --select
 SELECT * FROM contraincendiosh.TAGS_HYDRATION
 GO
+
 
 
 --Drop REGISTROS
@@ -192,20 +192,23 @@ SELECT * FROM contraincendiosh.REGISTROS_GATEWAYS_LOGS
 ORDER BY ts DESC
 GO
 
+
+--last bodega query - tomar el ultimo registro de todos los tags; ponerle equipo y bodega
 WITH CTE AS (
+	--
     SELECT ts,TagID, BodegaID, ROW_NUMBER() OVER (PARTITION BY TagID ORDER BY ts DESC) AS posicion
     FROM contraincendiosh.REGISTROS_GATEWAYS_LOGS
 )
 SELECT 
 	CTE.ts,
-	R.NombreRecurso,
+	R.NombreEquipo,
 	B.BodegaID,
 	B.NombreBodega,
 	CTE.TagID,
 	CTE.posicion
 FROM CTE
 	LEFT JOIN contraincendiosh.TAGS_HYDRATION TH ON CTE.TagID = TH.TagID
-	LEFT JOIN contraincendiosh.EQUIPOS R ON R.RecursoID = TH.RecursoID
+	LEFT JOIN contraincendiosh.EQUIPOS R ON R.EquipoID = TH.EquipoID
 	LEFT JOIN contraincendiosh.BODEGAS B ON CTE.BodegaID = B.BodegaID
 WHERE posicion = 1
 ORDER BY ts DESC;
@@ -363,6 +366,7 @@ FROM
 SELECT * FROM contraincendiosh.COMBINADO
 
 
+-- registros cruzados - ver los registros con nombres propios de equipo y bodegas
 SELECT
 	RGL.ts,
 	B.NombreBodega,
