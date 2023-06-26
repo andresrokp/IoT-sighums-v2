@@ -101,6 +101,7 @@ GO
 --create
 CREATE TABLE contraincendiosh.TAGS_HYDRATION(
 	
+	TupleUniqueID int IDENTITY(1,1),
 	TagID nvarchar(255) not null,
 	EquipoID integer
 )
@@ -140,6 +141,26 @@ FROM
 	contraincendiosh.TAGS_HYDRATION TH
 	LEFT JOIN contraincendiosh.EQUIPOS E ON TH.EquipoID = E.EquipoID
 GO
+
+--renombrar la columna
+EXEC sp_rename 'contraincendiosh.TAGS_HYDRATION.RecordUniqueID' , 'TupleUniqueID', 'COLUMN'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -252,76 +273,97 @@ GO
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 -- -- REGISTROS FORMULARIO
-
---
-
 
 IF OBJECT_ID('contraincendiosh.REGISTRO_FORMULARIO_LOGS', 'U') IS NOT NULL
 DROP TABLE contraincendiosh.REGISTRO_FORMULARIO_LOGS
 GO
 --
 CREATE TABLE contraincendiosh.REGISTRO_FORMULARIO_LOGS (
-  recordID INT IDENTITY(1,1),
+  TupleUniqueID INT IDENTITY(1,1),
   ts BIGINT,
   BodegaID VARCHAR(255),
-  RecursoSapID INT,
+  EquipoID INT,
   Cantidad INT,
   Diligenciante VARCHAR(255),
   EstadoTeorico VARCHAR(255)
 );
 GO
 
-INSERT INTO contraincendiosh.REGISTRO_FORMULARIO_LOGS (ts, BodegaID, RecursoSapID, Cantidad, Diligenciante, EstadoTeorico)
-SELECT 1000000334, 'Bod1', 122, 5, 'persona1', 'Active' UNION
-SELECT 1000000827, 'Bod2', 122, 10, 'persona3', 'Inactive' UNION
-SELECT 1000000982, 'Bod2', 125, 3, 'persona3', 'Active' UNION
-SELECT 1000001001, 'Bod1', 120, 7, 'persona2', 'Active' UNION
-SELECT 1000001109, 'Bod3', 121, 2, 'persona1', 'Inactive' UNION
-SELECT 1000001222, 'Bod2', 120, 9, 'persona2', 'Active' UNION
-SELECT 1000001323, 'Bod3', 121, 4, 'persona3', 'Active' UNION
-SELECT 1000001436, 'Bod1', 122, 6, 'persona1', 'Inactive' UNION
-SELECT 1000001542, 'Bod2', 120, 3, 'persona3', 'Active' UNION
-SELECT 1000001637, 'Bod1', 122, 8, 'persona2', 'Active' UNION
-SELECT 1000001724, 'Bod2', 120, 5, 'persona1', 'Active' UNION
-SELECT 1000001820, 'Bod3', 122, 2, 'persona2', 'Inactive' UNION
-SELECT 1000001945, 'Bod3', 121, 4, 'persona3', 'Active' UNION
-SELECT 1000002063, 'Bod1', 120, 6, 'persona2', 'Active' UNION
-SELECT 1000002131, 'Bod2', 121, 9, 'persona1', 'Inactive' UNION
-SELECT 1000002230, 'Bod1', 122, 3, 'persona3', 'Active' UNION
-SELECT 1000002324, 'Bod2', 121, 7, 'persona2', 'Active' UNION
-SELECT 1000002442, 'Bod3', 120, 5, 'persona1', 'Active' UNION
-SELECT 1000002531, 'Bod1', 121, 2, 'persona2', 'Inactive' UNION
-SELECT 1000002627, 'Bod2', 120, 4, 'persona3', 'Active' UNION
-SELECT 1000002743, 'Bod3', 122, 6, 'persona1', 'Active' UNION
-SELECT 1000002836, 'Bod1', 120, 3, 'persona2', 'Active' UNION
-SELECT 1000002945, 'Bod2', 122, 9, 'persona3', 'Inactive' UNION
-SELECT 1000003063, 'Bod3', 121, 4, 'persona2', 'Active' UNION
-SELECT 1000003142, 'Bod1', 120, 6, 'persona1', 'Active' UNION
-SELECT 1000003267, 'Bod2', 121, 3, 'persona3', 'Active' UNION
-SELECT 1000003345, 'Bod3', 122, 8, 'persona2', 'Inactive' UNION
-SELECT 1000003462, 'Bod1', 121, 5, 'persona1', 'Active' UNION
-SELECT 1000003557, 'Bod2', 120, 2, 'persona3', 'Active' UNION
-SELECT 1000003624, 'Bod3', 122, 4, 'persona2', 'Active' UNION
-SELECT 1000003741, 'Bod1', 121, 6, 'persona1', 'Active' UNION
-SELECT 1000003826, 'Bod2', 120, 3, 'persona3', 'Inactive' UNION
-SELECT 1000003967, 'Bod3', 122, 7, 'persona2', 'Active' UNION
-SELECT 1000004052, 'Bod1', 120, 5, 'persona1', 'Active' UNION
-SELECT 1000004136, 'Bod2', 121, 2, 'persona3', 'Active' UNION
-SELECT 1000004263, 'Bod3', 122, 4, 'persona2', 'Inactive' UNION
-SELECT 1000004322, 'Bod1', 120, 6, 'persona1', 'Active' UNION
-SELECT 1000004441, 'Bod2', 121, 3, 'persona3', 'Active' UNION
-SELECT 1000004525, 'Bod3', 122, 7, 'persona2', 'Active' UNION
-SELECT 1000004644, 'Bod1', 120, 5, 'persona1', 'Active' UNION
-SELECT 1000004735, 'Bod2', 121, 2, 'persona3', 'Active' UNION
-SELECT 1000004867, 'Bod3', 122, 4, 'persona2', 'Active' UNION
-SELECT 1000004950, 'Bod1', 120, 6, 'persona1', 'Inactive' UNION
-SELECT 1000005069, 'Bod2', 121, 3, 'persona3', 'Active' UNION
-SELECT 1000005124, 'Bod3', 122, 7, 'persona2', 'Active' UNION
-SELECT 1000005241, 'Bod1', 120, 5, 'persona1', 'Active'
+INSERT INTO contraincendiosh.REGISTRO_FORMULARIO_LOGS (ts, BodegaID, EquipoID, Cantidad, Diligenciante, EstadoTeorico)
+	SELECT 1672555656000, 'cem', 100000066, 5, 'persona1', 'OPERATIVO' UNION
+	SELECT 1673311008000, 'camion7303', 100000066, 10, 'persona3', 'NO OPERATIVO' UNION
+	SELECT 1673462888000, 'camion7303', 100001212, 3, 'persona3', 'SIN REVISION' UNION
+	SELECT 1673607230000, 'cem', 100001111, 7, 'persona2', 'OPERATIVO' UNION
+	SELECT 1673738317000, 'yaguaramangos', 100001212, 2, 'persona1', 'NO OPERATIVO' UNION
+	SELECT 1673861122000, 'camion7303', 100001111, 9, 'persona2', 'OPERATIVO' UNION
+	SELECT 1673909695000, 'yaguaramangos', 100001212, 4, 'persona3', 'OPERATIVO' UNION
+	SELECT 1674037868000, 'cem', 100000066, 6, 'persona1', 'NO OPERATIVO' UNION
+	SELECT 1674558123000, 'camion7303', 100001111, 3, 'persona3', 'OPERATIVO' UNION
+	SELECT 1675033850000, 'cem', 100000066, 8, 'persona2', 'SIN REVISION' UNION
+	SELECT 1675102338000, 'camion7303', 100001111, 5, 'persona1', 'OPERATIVO' UNION
+	SELECT 1675255602000, 'yaguaramangos', 100000066, 2, 'persona2', 'NO OPERATIVO' UNION
+	SELECT 1675294091000, 'yaguaramangos', 100001212, 4, 'persona3', 'OPERATIVO' UNION
+	SELECT 1675462631000, 'cem', 100001111, 6, 'persona2', 'OPERATIVO' UNION
+	SELECT 1675618643000, 'camion7303', 100001212, 9, 'persona1', 'NO OPERATIVO' UNION
+	SELECT 1675742828000, 'cem', 100000066, 3, 'persona3', 'OPERATIVO' UNION
+	SELECT 1675807517000, 'camion7303', 100001212, 7, 'persona2', 'OPERATIVO' UNION
+	SELECT 1675857712000, 'yaguaramangos', 100001111, 5, 'persona1', 'SIN REVISION' UNION
+	SELECT 1676130184000, 'cem', 100001212, 2, 'persona2', 'NO OPERATIVO' UNION
+	SELECT 1676937125000, 'camion7303', 100001111, 4, 'persona3', 'OPERATIVO' UNION
+	SELECT 1676995809000, 'yaguaramangos', 100000066, 6, 'persona1', 'OPERATIVO' UNION
+	SELECT 1677036471000, 'cem', 100001111, 3, 'persona2', 'OPERATIVO' UNION
+	SELECT 1677147619000, 'camion7303', 100000066, 9, 'persona3', 'NO OPERATIVO' UNION
+	SELECT 1677211453000, 'yaguaramangos', 100001212, 4, 'persona2', 'OPERATIVO' UNION
+	SELECT 1677385283000, 'cem', 100001111, 6, 'persona1', 'OPERATIVO' UNION
+	SELECT 1677427654000, 'camion7303', 100001212, 3, 'persona3', 'OPERATIVO' UNION
+	SELECT 1677649197000, 'yaguaramangos', 100000066, 8, 'persona2', 'NO OPERATIVO' UNION
+	SELECT 1678154446000, 'cem', 100001212, 5, 'persona1', 'OPERATIVO' UNION
+	SELECT 1678168959000, 'camion7303', 100001111, 2, 'persona3', 'OPERATIVO' UNION
+	SELECT 1678273756000, 'yaguaramangos', 100000066, 4, 'persona2', 'OPERATIVO' UNION
+	SELECT 1678364182000, 'cem', 100001212, 6, 'persona1', 'OPERATIVO' UNION
+	SELECT 1678546057000, 'camion7303', 100001111, 3, 'persona3', 'NO OPERATIVO' UNION
+	SELECT 1678551301000, 'yaguaramangos', 100000066, 7, 'persona2', 'OPERATIVO' UNION
+	SELECT 1678804023000, 'cem', 100001111, 5, 'persona1', 'OPERATIVO' UNION
+	SELECT 1679058920000, 'camion7303', 100001212, 2, 'persona3', 'OPERATIVO' UNION
+	SELECT 1679211122000, 'yaguaramangos', 100000066, 4, 'persona2', 'SIN REVISION' UNION
+	SELECT 1679794474000, 'cem', 100001111, 6, 'persona1', 'OPERATIVO' UNION
+	SELECT 1680279922000, 'camion7303', 100001212, 3, 'persona3', 'OPERATIVO' UNION
+	SELECT 1680331571000, 'yaguaramangos', 100000066, 7, 'persona2', 'OPERATIVO' UNION
+	SELECT 1680457617000, 'cem', 100001111, 5, 'persona1', 'OPERATIVO' UNION
+	SELECT 1681216746000, 'camion7303', 100001212, 2, 'persona3', 'OPERATIVO' UNION
+	SELECT 1681817529000, 'yaguaramangos', 100000066, 4, 'persona2', 'OPERATIVO' UNION
+	SELECT 1682312240000, 'cem', 100001111, 6, 'persona1', 'NO OPERATIVO' UNION
+	SELECT 1682343370000, 'camion7303', 100001212, 3, 'persona3', 'SIN REVISION' UNION
+	SELECT 1682417932000, 'yaguaramangos', 100000066, 7, 'persona2', 'OPERATIVO' UNION
+	SELECT 1682792932000, 'cem', 100001111, 5, 'persona1', 'OPERATIVO'
 GO
-
-
 
 SELECT * FROM contraincendiosh.REGISTRO_FORMULARIO_LOGS
 GO
@@ -420,3 +462,7 @@ SELECT * from contraincendiosh.EQUIPOSPseudoRealesPruebaOgis2
 
 -- ver las columnas de una tabla
 SELECT * FROM sys.columns WHERE object_id = OBJECT_ID('contraincendiosh.EQUIPOSPseudoRealesPruebaOgis2')
+
+
+
+
