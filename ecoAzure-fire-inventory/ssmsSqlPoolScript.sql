@@ -34,6 +34,26 @@ SELECT * FROM contraincendiosh.BODEGAS
 GO
 
 
+SELECT BodegaID AS [value], NombreBodega AS [label] FROM contraincendiosh.BODEGAS
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 --Drop RECURSOS
 IF OBJECT_ID('contraincendiosh.EQUIPOS', 'U') IS NOT NULL
 DROP TABLE contraincendiosh.EQUIPOS
@@ -224,7 +244,6 @@ SELECT * FROM contraincendiosh.REGISTROS_GATEWAYS_LOGS
 ORDER BY ts DESC
 GO
 
-
 --last bodega query - tomar el ultimo registro de todos los tags; ponerle equipo y bodega
 WITH CTE AS (
 	--
@@ -271,6 +290,47 @@ AS
 	FROM INSERTED;
 GO
 
+--actualización de valores en la tabla rremplazo de variables (chatGPT)
+
+-- Goal 1: Change 'lisamallanito' to 'refineriaci'
+UPDATE contraincendiosh.REGISTROS_GATEWAYS_LOGS
+SET BodegaID = 'refineriaci'
+WHERE BodegaID = 'lisamallanito';
+
+-- Goal 2: Set Latitude value of 'refineriaci' to 7.072965
+UPDATE contraincendiosh.REGISTROS_GATEWAYS_LOGS
+SET Latitude = 7.072965
+WHERE BodegaID = 'refineriaci';
+
+-- Goal 3: Set Longitude value of 'refineriaci' to -73.877473
+UPDATE contraincendiosh.REGISTROS_GATEWAYS_LOGS
+SET Longitude = -73.877473
+WHERE BodegaID = 'refineriaci';
+
+-- Goal 4: Change 'cem' to 'campocasabeci'
+UPDATE contraincendiosh.REGISTROS_GATEWAYS_LOGS
+SET BodegaID = 'campocasabeci'
+WHERE BodegaID = 'cem';
+
+-- Goal 5: Set Latitude value of 'campocasabeci' to 7.003220
+UPDATE contraincendiosh.REGISTROS_GATEWAYS_LOGS
+SET Latitude = 7.003220
+WHERE BodegaID = 'campocasabeci';
+
+-- Goal 6: Set Longitude value of 'campocasabeci' to -73.911322
+UPDATE contraincendiosh.REGISTROS_GATEWAYS_LOGS
+SET Longitude = -73.911322
+WHERE BodegaID = 'campocasabeci';
+
+
+
+UPDATE contraincendiosh.REGISTROS_GATEWAYS_LOGS
+SET BodegaID = 'cielcentro'
+WHERE BodegaID = 'cirainfantaci'
+
+UPDATE contraincendiosh.REGISTROS_GATEWAYS_LOGS
+SET Latitude = 7.078965, Longitude = -73.867554
+WHERE BodegaId = 'camion7303'
 
 
 
@@ -368,13 +428,15 @@ GO
 SELECT * FROM contraincendiosh.REGISTRO_FORMULARIO_LOGS
 GO
 
+
+--agrupa parejas de bodega-equipo y trae el ultimo registro de cada una (el primer rn de cada grupo sorted by timestamp)
 WITH CTE AS(
-	SELECT BodegaID, RecursoSapID, Cantidad, ROW_NUMBER() OVER (PARTITION BY BodegaID, RecursoSapID ORDER BY ts DESC) AS rn
+	SELECT TupleUniqueID, ts, BodegaID, EquipoID, Cantidad, Diligenciante, EstadoTeorico, ROW_NUMBER() OVER (PARTITION BY BodegaID, EquipoID ORDER BY ts DESC) AS rownum
 	FROM contraincendiosh.REGISTRO_FORMULARIO_LOGS
 )
-SELECT BodegaID, RecursoSapID, Cantidad
+SELECT TupleUniqueID, ts, BodegaID, EquipoID, Cantidad, Diligenciante, EstadoTeorico
 FROM CTE
-WHERE rn = 1
+WHERE rownum = 1
 ORDER BY BodegaID
 GO
 
@@ -453,16 +515,12 @@ ORDER BY RecursoID DESC
 --------------------------------------------------------
 --tabla con todo feo del excel para PRUEBA conexion OGIS
 SELECT *
-INTO contraincendiosh.EQUIPOSPseudoRealesPruebaOgis2
+INTO contraincendiosh.RecursosPseudoRealesPruebaOgis2
 FROM dbo.RecursosPseudoRealesPruebaOgis2
 
-SELECT * from contraincendiosh.EQUIPOSPseudoRealesPruebaOgis2
+SELECT * from contraincendiosh.RecursosPseudoRealesPruebaOgis2
 
 
 
 -- ver las columnas de una tabla
 SELECT * FROM sys.columns WHERE object_id = OBJECT_ID('contraincendiosh.EQUIPOSPseudoRealesPruebaOgis2')
-
-
-
-
