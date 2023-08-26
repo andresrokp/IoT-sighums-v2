@@ -14,16 +14,30 @@ function conversorTagsIdEquipos() {
 
     // return JSON.parse(value).map( e => `<pre>${namesMap[e.TagID]}</pre>`).join('')
     
-    let htmlData = JSON.parse(value).map( tag => {
+    let rowsArray = JSON.parse(value).map( tag => {
         
-        let { TagID } = tag
-        let tagMark = TagID.slice(TagID.length-5, TagID.length)
-        let equipName = namesMap[TagID]
-        
-        return `<pre>${tagMark}&emsp;:&emsp;${equipName}</pre>`
+        let { TagID } = tag;
+        let tagMark = TagID.slice(TagID.length-6, TagID.length);
+        let equipName = namesMap[TagID];
+        return `<tr><td><pre>${equipName}</pre></td><td><pre>${tagMark}</pre><td></tr>`;
+
     })
 
-    let header = `<pre>TagID&emsp;:&emsp;Equipo</pre>`
+    let tableContent = rowsArray.join('')
 
-    return header + htmlData.join('')
+    let table = `
+    <table>
+        <thead>
+            <tr>
+                <th>Equipo</th>
+                <th>TagID</th>
+            </tr>
+        </thead>
+        <tbody>
+            ${tableContent}
+        </tbody>
+    </table>
+    `
+
+    return table;
 }
