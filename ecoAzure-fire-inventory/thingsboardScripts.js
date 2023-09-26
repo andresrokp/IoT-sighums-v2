@@ -14,12 +14,12 @@ function conversorTagsIdEquipos() {
 
     // return JSON.parse(value).map( e => `<pre>${namesMap[e.TagID]}</pre>`).join('')
     
-    let rowsArray = JSON.parse(value).map( tag => {
+    let rowsArray = JSON.parse(value).map( (tag, idx) => {
         
         let { TagID } = tag;
-        let tagMark = TagID.slice(TagID.length-6, TagID.length);
+        let tagMark = TagID //.slice(0, 12);
         let equipName = namesMap[TagID];
-        return `<tr><td><pre>${equipName}</pre></td><td><pre>${tagMark}</pre><td></tr>`;
+        return `<tr><td><pre>${idx+1}</pre></td><td><pre>${equipName}</pre></td><td><pre>${tagMark}</pre><td></tr>`;
 
     })
 
@@ -29,6 +29,7 @@ function conversorTagsIdEquipos() {
     <table>
         <thead>
             <tr>
+                <th>Item</th>
                 <th>Equipo</th>
                 <th>TagID</th>
             </tr>
