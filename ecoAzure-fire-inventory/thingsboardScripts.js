@@ -42,3 +42,11 @@ function conversorTagsIdEquipos() {
 
     return table;
 }
+
+function mapa_mapa_settingLabelFunction (){
+    const max = 8;
+    const min = -8;
+    const gap = Math.floor(Math.random() * (max - min + 1)) + min;
+
+    return `<div style='text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff; transform: translate(0px, ${gap}px);'>${dsIndex}</div>`;
+}
