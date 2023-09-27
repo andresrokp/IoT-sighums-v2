@@ -44,9 +44,20 @@ function conversorTagsIdEquipos() {
 }
 
 function mapa_mapa_settingLabelFunction (){
-    const max = 8;
-    const min = -8;
-    const gap = Math.floor(Math.random() * (max - min + 1)) + min;
+    // // approach 1: randomice translation value
+    // const max = 8;
+    // const min = -8;
+    // const gap = Math.floor(Math.random() * (max - min + 1)) + min;
 
-    return `<div style='text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff; transform: translate(0px, ${gap}px);'>${dsIndex}</div>`;
+    // return `<div style='text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff; transform: translate(0px, ${gap}px);'>${dsIndex}</div>`;
+
+    //approach 2: preset a list for translation
+    const pushLeft = [5,6,12];
+    const pushRight = [4,20,14];
+    let gap = 0;
+
+    if (pushLeft.includes(dsIndex)) gap = -30;
+    else if (pushRight.includes(dsIndex)) gap = 30;
+
+    return `<div style='transform: translate(${gap}px, 0px); text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff'>\${entityName}</div>`;
 }
