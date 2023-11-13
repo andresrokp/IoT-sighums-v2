@@ -451,6 +451,49 @@ GO
 
 
 
+--Drop Bases
+IF OBJECT_ID('contraincendiosh.BASES', 'U') IS NOT NULL
+DROP TABLE contraincendiosh.BASES
+GO
+-- Create Bases
+CREATE TABLE contraincendiosh.BASES (
+  TupleUniqueID INT IDENTITY(1,1),
+  BaseID nvarchar(255),
+  NombreBase nvarchar(255),
+  FuncionarioContacto nvarchar(255),
+  TelefonoContacto nvarchar(255),
+  CorreoContacto nvarchar(255)
+)
+GO
+--Fill Bases
+INSERT INTO contraincendiosh.BASES (BaseID, NombreBase, FuncionarioContacto, TelefonoContacto, CorreoContacto)
+select 'EstacionContraincendioGRB', 'ESTACIÓN DE EMERGENCIAS CEM', 'Fredy Ariza', '3185302123', 'fredyal.ariza@ecopetrol.com.co' UNION
+select 'CampoCasabe', 'BODEGA C.I', 'Fredy Ariza', '3185302123', 'fredyal.ariza@ecopetrol.com.co' union
+select 'ContenedorPtarRefineriaBarranca', 'CONTENEDOR PTAR', 'FuncionarioContacto_3', 'TelefonoContacto_3', 'CorreoContacto_3' union
+select 'base_4', 'Nombre Base 4', 'Funcionario_Contacto_4', 'Telefono_Contacto_4', 'Correo_Contacto_4'
+GO
+--select Bases
+SELECT * FROM contraincendiosh.BASES
+GO
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 --agrupa parejas de bodega-equipo y trae el ultimo registro de cada una (el primer rn de cada grupo sorted by timestamp)
@@ -548,4 +591,5 @@ SELECT * from contraincendiosh.RecursosPseudoRealesPruebaOgis2
 
 -- ver las columnas de una tabla
 SELECT * FROM sys.columns WHERE object_id = OBJECT_ID('contraincendiosh.EQUIPOSPseudoRealesPruebaOgis2')
+
 
