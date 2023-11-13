@@ -185,7 +185,7 @@ EXEC sp_rename 'contraincendiosh.TAGS_HYDRATION.RecordUniqueID' , 'TupleUniqueID
 
 
 
---Drop REGISTROS
+--Drop REGISTROS GATEWAY LOGS
 IF OBJECT_ID('contraincendiosh.REGISTROS_GATEWAYS_LOGS', 'U') IS NOT NULL
 DROP TABLE contraincendiosh.REGISTROS_GATEWAYS_LOGS
 GO
@@ -429,6 +429,30 @@ SELECT * FROM contraincendiosh.REGISTRO_FORMULARIO_LOGS
 GO
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 --agrupa parejas de bodega-equipo y trae el ultimo registro de cada una (el primer rn de cada grupo sorted by timestamp)
 WITH CTE AS(
 	SELECT TupleUniqueID, ts, BodegaID, EquipoID, Cantidad, Diligenciante, EstadoTeorico, ROW_NUMBER() OVER (PARTITION BY BodegaID, EquipoID ORDER BY ts DESC) AS rownum
@@ -446,15 +470,15 @@ GO
 
 
 
--- COMBINED TABLE
+-- COMBINED TABLE del query de PowerApps
 --drop
 IF OBJECT_ID('contraincendiosh.COMBINADO', 'U') IS NOT NULL
 	DROP TABLE contraincendiosh.COMBINADO
 GO
 --join select create
 SELECT
-	R.RecursoID,
-	R.NombreRecurso,
+	R.EquipoID,
+	R.NombreEquipo,
 	R.EspecificacionesEquipo,
 	R.EstadoTeorico,
 	R.Fabricante,
@@ -524,3 +548,4 @@ SELECT * from contraincendiosh.RecursosPseudoRealesPruebaOgis2
 
 -- ver las columnas de una tabla
 SELECT * FROM sys.columns WHERE object_id = OBJECT_ID('contraincendiosh.EQUIPOSPseudoRealesPruebaOgis2')
+
