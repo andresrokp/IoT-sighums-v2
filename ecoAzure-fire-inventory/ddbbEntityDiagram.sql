@@ -1,70 +1,74 @@
--- // Use DBML to define your database structure
--- // Docs: https://dbml.dbdiagram.io/docs
-
-Table REGISTRO_GATEWAYS_LOGS {
-  ID integer [primary key]
-  ts timestamp
-  BodegaID varchar
-  TagID varchar
-  Longitude float
-  Latitute float
-}
-
-Table TAG_HYDRATION {
-  TagID varchar [primary key]
-  RecursoSapID integer
-  BodegaID varchar
-}
-
-Table RECURSOS {
-  RecursoSapID integer [primary key]
-  NombreRecurso varchar
-  EspecificacionesEquipo varchar
-  EstadoTeorico varchar
-  Fabricante varchar
-  Unidad varchar
-  Capacidad integer
-  BaseID varchar
-  CodigoPec varchar
-  ExpedienteLam varchar
-  ActividadAplicacion varchar
-  Observaciones varchar
+Table EQUIPOS {
+  TupleUniqueId int [primary key]
+  EquipoID int
+  NombreEquipo nvarchar(255)
+  EspecificacionesEquipo nvarchar(255)
+  EstadoTeorico nvarchar(255)
+  Fabricante nvarchar(255)
+  Unidad nvarchar(255)
+  Capacidad decimal(10,3)
+  BodegaAsignadaID nvarchar(255)
+  CodigoPec nvarchar(255)
+  ExpedienteLam nvarchar(255)
+  BaseRespuestaID nvarchar(255)
+  ActividadAplicacion nvarchar(255)
+  Observaciones nvarchar(255)
+  CodigoInventario nvarchar(255)
+  Empresa nvarchar(255)
 }
 
 Table BODEGAS {
-  BodegaID varchar [primary key]
-  NombreBodega varchar
-  TipoBodega varchar
-  FacilidadSistemaTransporte varchar
-  Instalacion varchar
-  Vicepresidencia varchar
-  Gerencia varchar
+  TupleUniqueID int [primary key]
+  BodegaID nvarchar(255)
+  NombreBodega nvarchar(255)
+  TipoBodega nvarchar(255)
+  FacilidadSistemaTransporte nvarchar(255)
+  Instalacion nvarchar(255)
+  Vicepresidencia nvarchar(255)
+  GerenciaDpto nvarchar(255)
+  BaseRespuestaID nvarchar(255)
 }
 
 Table BASES {
-  BaseID varchar [primary key]
-  NombreBaseRespuesta varchar
-  NombreFuncionarioContacto varchar
-  TelefonoContacto varchar
-  CorreoContacto varchar
+  TupleUniqueID int [primary key]
+  BaseID nvarchar(255)
+  NombreBase nvarchar(255)
+  FuncionarioContacto nvarchar(255)
+  TelefonoContacto nvarchar(255)
+  CorreoContacto nvarchar(255)
+}
+
+Table TAGS_HYDRATION {
+  TupleUniqueID int [primary key]
+  TagID nvarchar(255) [not null]
+  EquipoID int
+}
+
+Table REGISTROS_GATEWAYS_LOGS {
+  ts bigint [not null]
+  BodegaID varchar(50) [not null]
+  Latitude decimal(10,4) [not null]
+  Longitude decimal(10,4) [not null]
+  TagID varchar(50) [not null]
+  Rssi decimal(10,2) [not null]
 }
 
 Table REGISTRO_FORMULARIO_LOGS {
-  recordID integer [primary key]
-  ts datetime
-  BodegaID varchar
-  RecursoSapID integer
-  Cantidad integer
-  Diligenciante varchar
-  EstadoTeorico varchar
+  TupleUniqueID int [primary key]
+  ts bigint
+  BodegaID varchar(255)
+  EquipoID int
+  Cantidad int
+  Diligenciante varchar(255)
+  EstadoTeorico varchar(255)
+  Observaciones varchar(255)
 }
 
-Ref: REGISTRO_GATEWAYS_LOGS.TagID > TAG_HYDRATION.TagID
-Ref: TAG_HYDRATION.RecursoSapID > RECURSOS.RecursoSapID
-Ref: REGISTRO_GATEWAYS_LOGS.BodegaID > BODEGAS.BodegaID
-Ref: RECURSOS.BaseID > BASES.BaseID
 
-
-Ref: "REGISTRO_FORMULARIO_LOGS"."RecursoSapID" > "RECURSOS"."RecursoSapID"
-
-Ref: "BODEGAS"."BodegaID" < "REGISTRO_FORMULARIO_LOGS"."BodegaID"
+Ref: EQUIPOS.BodegaAsignadaID > BODEGAS.BodegaID
+Ref: EQUIPOS.BaseRespuestaID > BASES.BaseID
+Ref: TAGS_HYDRATION.EquipoID > EQUIPOS.EquipoID
+Ref: REGISTROS_GATEWAYS_LOGS.BodegaID > BODEGAS.BodegaID
+Ref: REGISTROS_GATEWAYS_LOGS.TagID > TAGS_HYDRATION.TagID
+Ref: REGISTRO_FORMULARIO_LOGS.BodegaID > BODEGAS.BodegaID
+Ref: REGISTRO_FORMULARIO_LOGS.EquipoID > EQUIPOS.EquipoID
