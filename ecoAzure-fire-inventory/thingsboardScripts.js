@@ -61,3 +61,25 @@ function mapa_mapa_settingLabelFunction (){
 
     return `<div style='transform: translate(${gap}px, 0px); text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff'>\${entityName}</div>`;
 }
+
+
+// RULECHAIN
+
+function mockIterator() {
+    var i = parseInt(metadata.ss_index);
+    var len = parseInt(410);
+
+    var nextIndex = i < len-1 ? i + 1 : 0;
+
+    msg.typeOfMsg = typeof msg;
+    msg.typeOfMsgArray = typeof msg.tagsArray;
+
+    var parsedMsg = {
+        latitude: parseFloat(msg.latitude),
+        longitude: parseFloat(msg.longitude),
+        tagsArray: JSON.parse(msg.tagsArray),
+        BodegaID: msg.BodegaID
+    };
+
+    return {msg: parsedMsg, metadata: {index:nextIndex}, msgType: msgType};
+}
