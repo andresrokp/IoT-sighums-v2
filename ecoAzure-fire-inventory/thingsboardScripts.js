@@ -83,3 +83,19 @@ function mockIterator() {
 
     return {msg: parsedMsg, metadata: {index:nextIndex}, msgType: msgType};
 }
+
+function azurePreparation() {
+    
+    msg.ts = new Date().getTime();
+
+    if (msg.latitude){
+        msg.Latitude = msg.latitude;
+        delete msg.latitude;
+    }
+    if (msg.longitude){
+        msg.Longitude = msg.longitude;
+        delete msg.longitude;
+    }
+
+    return {msg: msg, metadata: metadata, msgType: msgType};
+}
