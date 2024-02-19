@@ -99,3 +99,9 @@ function azurePreparation() {
 
     return {msg: msg, metadata: metadata, msgType: msgType};
 }
+
+function name() {
+    var esBuenMensaje = !!msg.ts && !!msg.Latitude && !!msg.Longitude && !!(msg.tagsArray.length > 0) && !!msg.BodegaID && (Object.keys(msg).length == 5);
+
+    return esBuenMensaje;
+}
